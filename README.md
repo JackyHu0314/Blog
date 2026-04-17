@@ -1,16 +1,33 @@
-# React + Vite
+# Jacky's Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+个人博客，基于 Vite + React 19 + Tailwind CSS v4 构建。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- Vite 8
+- Tailwind CSS v4
+- React Router v7
 
-## React Compiler
+## 功能
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 中英双语切换
+- 亮色 / 暗色主题（默认暗色）
+- 随记、项目、科研、关于页面
+- 博客活跃度热力图
+- 站点统计（在线天数、总字数、文章数、最后更新）
 
-## Expanding the ESLint configuration
+## 本地开发
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## 部署
+
+```bash
+npm run build
+```
+
+将 `dist/` 目录部署到任意静态托管平台（Cloudflare Pages、Nginx 等）。

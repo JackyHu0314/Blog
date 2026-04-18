@@ -4,6 +4,22 @@
 
 ## 版本
 
+### v0.0.2 — 2026-04-18
+
+相对 v0.0.1 的变化：
+
+**变更**
+- `src/pages/About.jsx`：技能列表更新
+  - 移除 `C++ (greenhand)` → 改为 `C++`
+  - 新增 `C`
+  - 新增 `Vibe Coding (in progress)`
+- `src/i18n/dictionary.js`：兴趣描述更新
+  - 中文：新增"建网站"、"喜欢有趣的人"
+  - 英文：新增 "web development"、"I enjoy meeting interesting people"
+- `package.json`：版本号 `0.0.1` → `0.0.2`
+
+**说明**：v0.0.2 是**关于页内容**的小幅更新，反映用户技能与兴趣的最新状态。
+
 ### v0.0.1 — 2026-04-18
 
 相对 v0.0.0 的变化：
@@ -27,6 +43,7 @@
 - 在 `CLAUDE.md` 顶部加了一段醒目提示，明确要求所有操作此仓库的 agent（包括未来的我自己）主动维护 `CLAUDE.md` 和 `PROGRESS.md` 两份文档，不留空 TODO、不等用户提醒。同步更新了 auto-memory 里的对应 feedback。
 - **保护个人信息**：将 `Blog依赖/`（用户内部素材目录，含个人信息与未公开草稿）加入 `.gitignore`。该目录尚未被 git 跟踪，所以仅 .gitignore 即可，无需 `git rm --cached`。
 - 在 `CLAUDE.md` 顶部的 agent 规则块中追加两条硬性责任：(2) 用户在对话里给出的新约定/规则要立即落到 CLAUDE.md 或 PROGRESS.md，不要只在当前会话点头；(3) 保护个人信息，凡疑似私人内容必须先 gitignore，不默认 commit。
+- 版本 `0.0.0 → 0.0.1`，提交 `43bbb5f` 已推送至 `origin/main`（https://github.com/JackyHu0314/Blog）。变更范围见上方"版本"章节。
 
 ## 当前状态快照
 

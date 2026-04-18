@@ -38,6 +38,11 @@
 
 ### 2026-04-18
 
+- **v0.0.2**：更新关于页内容
+  - 技能列表：移除 "C++ (greenhand)" 标签 → 改为 "C++"，新增 "C" 和 "Vibe Coding (in progress)"
+  - 兴趣描述：中文新增"建网站"、"喜欢有趣的人"；英文新增 "web development"、"I enjoy meeting interesting people"
+  - 修改文件：`src/pages/About.jsx`、`src/i18n/dictionary.js`、`package.json`、`PROGRESS.md`
+  - 提交 `5c6c0ea` 已推送至 `origin/main`
 - 新建 `CLAUDE.md`（仓库根目录），作为给未来 AI agent 看的项目导航与约定文档。包含技术栈、目录结构、内容写作方式（journals.js 对象数组）、双语/双主题硬约定、自定义 markdown parser 位置等。这样换会话/换 agent 时不必再从头探索代码。
 - 短暂存在过的空模板版 PROGRESS.md 已删除，改为本版本：由 Claude 自己写实际进度，而不是留空 checkbox 让用户填。
 - 在 `CLAUDE.md` 顶部加了一段醒目提示，明确要求所有操作此仓库的 agent（包括未来的我自己）主动维护 `CLAUDE.md` 和 `PROGRESS.md` 两份文档，不留空 TODO、不等用户提醒。同步更新了 auto-memory 里的对应 feedback。

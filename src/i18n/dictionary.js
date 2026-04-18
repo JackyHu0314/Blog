@@ -41,7 +41,7 @@ export const dict = {
       introBody:
         '你好，我是 Jacky，西安交通大学在读生，主修数学。目前主要关注人工智能（Embodied AI）与机器人技术，日常喜欢折腾 Linux 服务端与网络基础设施。',
       interests: '兴趣',
-      interestsBody: '编程、深度学习、阅读、摄影、运动、听音乐。相信技术可以让世界变得更美好。',
+      interestsBody: '编程、深度学习、建网站、阅读、摄影、运动、听音乐。喜欢有趣的人，相信技术可以让世界变得更美好。',
       skills: '技能',
       contact: '联系',
       contactHint: '悬停卡片即可唤醒 — 微信 / QQ 卡片翻转显示二维码',
@@ -105,7 +105,7 @@ export const dict = {
       introBody:
         "Hi, I'm Jacky, a student at Xi'an Jiaotong University majoring in Mathematics. I focus on AI (Embodied AI) and robotics, and enjoy tinkering with Linux servers and network infrastructure.",
       interests: 'Interests',
-      interestsBody: 'Programming, deep learning, reading, photography, sports, and listening to music. I believe technology makes the world better.',
+      interestsBody: 'Programming, deep learning, web development, reading, photography, sports, and listening to music. I enjoy meeting interesting people and believe technology makes the world better.',
       skills: 'Skills',
       contact: 'Contact',
       contactHint: 'Hover to wake — WeChat / QQ cards flip to reveal QR codes',

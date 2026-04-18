@@ -2,7 +2,7 @@ import { useLanguage } from '../context/LanguageContext'
 import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
 
-const skills = ['Python', 'C++ (greenhand)', 'Bash', 'Git', 'Deep Learning', 'Basketball']
+const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'Deep Learning', 'Vibe Coding (in progress)', 'Basketball']
 
 const siteLinks = [
   {

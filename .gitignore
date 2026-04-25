@@ -25,3 +25,10 @@ dist-ssr
 
 # 个人资料与内部素材，不上传 GitHub
 Blog依赖/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

@@ -28,3 +28,10 @@ Blog依赖/
 
 # Claude Code 配置目录，不上传
 .claude/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

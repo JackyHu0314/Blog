@@ -25,3 +25,6 @@ dist-ssr
 
 # 个人资料与内部素材，不上传 GitHub
 Blog依赖/
+
+# Claude Code 配置目录，不上传
+.claude/

@@ -5,6 +5,21 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jacky's Blog</title>
+    <script>
+      ;(function (locationInfo) {
+        if (locationInfo.search[1] !== '/') return
+
+        var decodedPath = locationInfo.search
+          .slice(1)
+          .split('&')
+          .map(function (segment) {
+            return segment.replace(/~and~/g, '&')
+          })
+          .join('?')
+
+        window.history.replaceState(null, null, locationInfo.pathname.slice(0, -1) + decodedPath + locationInfo.hash)
+      })(window.location)
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />

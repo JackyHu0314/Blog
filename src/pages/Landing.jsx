@@ -5,6 +5,7 @@ import GradientBackground from '../components/GradientBackground'
 import ThemeToggle from '../components/ThemeToggle'
 import LanguageToggle from '../components/LanguageToggle'
 import BouncingBallLoader from '../components/BouncingBallLoader'
+import HuggingFaceIcon from '../components/HuggingFaceIcon'
 import { journals } from '../data/journals'
 
 const SITE_BIRTH = new Date('2025-12-30')
@@ -89,7 +90,7 @@ export default function Landing() {
   function handleEnter() {
     if (loading) return
     setLoading(true)
-    setTimeout(() => navigate('/journal'), 1200)
+    setTimeout(() => navigate('/about'), 1200)
   }
 
   return (
@@ -129,10 +130,7 @@ export default function Landing() {
                   GitHub
                 </a>
                 <a href="https://huggingface.co/hax404" target="_blank" rel="noopener noreferrer" className="social-pill">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" />
-                    <text x="12" y="15" textAnchor="middle" fontSize="8" fontWeight="800" fill="var(--color-card-bg)">HF</text>
-                  </svg>
+                  <HuggingFaceIcon width="14" height="14" />
                   Hugging Face
                 </a>
                 <a href="mailto:jackyhu2008.03.14@gmail.com" className="social-pill">

@@ -1,14 +1,15 @@
 import { useLanguage } from '../context/LanguageContext'
 import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
+import HuggingFaceIcon from '../components/HuggingFaceIcon'
 
-const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Vibe Coding', 'Basketball']
+const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Adobe Premiere Pro', 'Basketball']
 
 const siteLinks = [
   {
     name: 'GitHub',
     url: 'https://github.com/JackyHu0314',
-    desc: '代码仓库',
+    desc: { zh: '代码仓库', en: 'Code repositories' },
     color: '#24262a',
     icon: (
       <svg viewBox="0 0 16 16" fill="currentColor" width="22" height="22">
@@ -17,20 +18,20 @@ const siteLinks = [
     ),
   },
   {
-    name: '云服务器',
-    url: '#',
-    desc: '自托管部署',
-    color: '#0f4c81',
+    name: { zh: '个人域名', en: 'Personal Domain' },
+    url: 'https://www.jackyhu.top/',
+    desc: { zh: '本站入口', en: 'Site entry' },
+    color: '#1f6feb',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-        <path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.93 9h-3.01a15.72 15.72 0 0 0-1.28-5.02A8.03 8.03 0 0 1 18.93 11ZM12 4.04c.83 1.2 1.55 3.42 1.83 6.96h-3.66C10.45 7.46 11.17 5.24 12 4.04ZM4.26 13h3.82c.13 2.02.48 3.82 1 5.16A8.03 8.03 0 0 1 4.26 13Zm3.82-2H4.26a8.03 8.03 0 0 1 4.82-5.16A16.2 16.2 0 0 0 8.08 11ZM12 19.96c-.83-1.2-1.55-3.42-1.83-6.96h3.66c-.28 3.54-1 5.76-1.83 6.96Zm2.92-1.8c.52-1.34.87-3.14 1-5.16h3.01a8.03 8.03 0 0 1-4.01 5.16Z"/>
       </svg>
     ),
   },
   {
     name: 'GitHub Pages',
     url: 'https://pages.github.com',
-    desc: '静态托管',
+    desc: { zh: '静态网页分发', en: 'Static site delivery' },
     color: '#24262a',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -41,7 +42,7 @@ const siteLinks = [
   {
     name: '西安交通大学数学学院',
     url: 'https://math.xjtu.edu.cn/',
-    desc: '我的学院',
+    desc: { zh: '学院主页', en: 'School homepage' },
     color: '#8b1a1a',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -64,13 +65,6 @@ const EmailIcon = (
   </svg>
 )
 
-const HuggingFaceIcon = (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
-    <circle cx="32" cy="32" r="28" />
-    <text x="32" y="39" textAnchor="middle" fontSize="20" fontWeight="800" fill="var(--color-card-bg)">HF</text>
-  </svg>
-)
-
 const WeChatIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
     <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.295.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.601-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.063-6.122zm-3.74 2.632c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm5.4 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
@@ -84,7 +78,7 @@ const QQIcon = (
 )
 
 export default function About() {
-  const { t } = useLanguage()
+  const { t, tr, lang } = useLanguage()
 
   return (
     <div>
@@ -121,16 +115,17 @@ export default function About() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-3 text-text-primary">网页分发</h2>
-          <p className="text-text-secondary text-sm mb-5">本站部署于以下平台</p>
+          <h2 className="text-xl font-bold mb-5 text-text-primary">
+            {lang === 'zh' ? '相关链接' : 'Links'}
+          </h2>
           <div className="site-links">
             {siteLinks.map(s => (
-              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="site-link-item" style={{ '--sl-color': s.color }}>
+              <a key={tr(s.name)} href={s.url} target="_blank" rel="noopener noreferrer" className="site-link-item" style={{ '--sl-color': s.color }}>
                 <div className="sl-filled" />
                 <span className="sl-icon">{s.icon}</span>
                 <div className="sl-info">
-                  <span className="sl-name">{s.name}</span>
-                  <span className="sl-desc">{s.desc}</span>
+                  <span className="sl-name">{tr(s.name)}</span>
+                  <span className="sl-desc">{tr(s.desc)}</span>
                 </div>
               </a>
             ))}
@@ -142,7 +137,7 @@ export default function About() {
           <p className="text-text-secondary text-sm mb-6">{t('about.contactHint')}</p>
           <div className="flex flex-wrap gap-6 justify-start">
             <DynamicCard label="GitHub" icon={GitHubIcon} href="https://github.com/JackyHu0314" description="Code Repository" />
-            <DynamicCard label="Hugging Face" icon={HuggingFaceIcon} href="https://huggingface.co/hax404" description="Models & Datasets" />
+            <DynamicCard label="Hugging Face" icon={<HuggingFaceIcon />} href="https://huggingface.co/hax404" description="Models & Datasets" />
             <DynamicCard label="Email" icon={EmailIcon} href="mailto:jackyhu2008.03.14@gmail.com" description="Contact Me" />
             <QRCard label="WeChat" icon={WeChatIcon} src="/wechat-qr.jpg" />
             <QRCard label="QQ" icon={QQIcon} src="/qq-qr.jpg" />

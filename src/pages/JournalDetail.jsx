@@ -6,17 +6,40 @@ import TableOfContents from '../components/TableOfContents'
 import CommentSection from '../components/CommentSection'
 import HaydRecommend from '../components/HaydRecommend'
 
-function renderBody(md) {
-  if (!md) return null
+function parseBody(md) {
+  if (!md) return { blocks: [], headings: [] }
   const lines = md.split('\n')
   const blocks = []
+  const headings = []
+  let headingIndex = 0
   let i = 0
   while (i < lines.length) {
     const line = lines[i]
     if (line.trim() === '') { i++; continue }
-    if (line.startsWith('## ')) { blocks.push({ type: 'h2', text: line.slice(3) }); i++; continue }
-    if (line.startsWith('### ')) { blocks.push({ type: 'h3', text: line.slice(4) }); i++; continue }
-    if (line.startsWith('#### ')) { blocks.push({ type: 'h4', text: line.slice(5) }); i++; continue }
+    if (line.startsWith('## ')) {
+      const text = line.slice(3).trim()
+      const block = { type: 'h2', text, id: `heading-${headingIndex++}` }
+      blocks.push(block)
+      headings.push({ id: block.id, level: 2, text })
+      i++
+      continue
+    }
+    if (line.startsWith('### ')) {
+      const text = line.slice(4).trim()
+      const block = { type: 'h3', text, id: `heading-${headingIndex++}` }
+      blocks.push(block)
+      headings.push({ id: block.id, level: 3, text })
+      i++
+      continue
+    }
+    if (line.startsWith('#### ')) {
+      const text = line.slice(5).trim()
+      const block = { type: 'h4', text, id: `heading-${headingIndex++}` }
+      blocks.push(block)
+      headings.push({ id: block.id, level: 4, text })
+      i++
+      continue
+    }
     if (line.startsWith('> ')) { blocks.push({ type: 'quote', text: line.slice(2) }); i++; continue }
     if (line.startsWith('- ')) {
       const items = []
@@ -25,7 +48,10 @@ function renderBody(md) {
     }
     blocks.push({ type: 'p', text: line }); i++
   }
+  return { blocks, headings }
+}
 
+function renderBody(blocks) {
   const renderInline = (text) =>
     text.split(/(\*\*[^*]+\*\*)/g).map((part, k) => {
       if (part.startsWith('**') && part.endsWith('**'))
@@ -35,9 +61,9 @@ function renderBody(md) {
 
   return blocks.map((b, idx) => {
     switch (b.type) {
-      case 'h2': return <h2 key={idx} className="article-h2">{renderInline(b.text)}</h2>
-      case 'h3': return <h3 key={idx} className="article-h3">{renderInline(b.text)}</h3>
-      case 'h4': return <h4 key={idx} className="article-h4">{renderInline(b.text)}</h4>
+      case 'h2': return <h2 key={b.id} id={b.id} className="article-h2">{renderInline(b.text)}</h2>
+      case 'h3': return <h3 key={b.id} id={b.id} className="article-h3">{renderInline(b.text)}</h3>
+      case 'h4': return <h4 key={b.id} id={b.id} className="article-h4">{renderInline(b.text)}</h4>
       case 'quote': return <blockquote key={idx} className="article-quote">{renderInline(b.text)}</blockquote>
       case 'ul':
         return (
@@ -65,6 +91,7 @@ export default function JournalDetail() {
   }
 
   const bodyText = tr(journal.body)
+  const parsedBody = parseBody(bodyText)
 
   return (
     <div className="detail-root">
@@ -84,12 +111,12 @@ export default function JournalDetail() {
 
           <HaydRecommend song={journal.song} />
 
-          <div className="article-body">{renderBody(bodyText)}</div>
+          <div className="article-body">{renderBody(parsedBody.blocks)}</div>
 
-          <CommentSection articleId={journal.id} />
+          <CommentSection />
         </article>
 
-        <TableOfContents body={bodyText} />
+        <TableOfContents headings={parsedBody.headings} />
       </div>
 
       <style>{`

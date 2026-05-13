@@ -2,9 +2,10 @@ import { useLanguage } from '../context/LanguageContext'
 import { research } from '../data/research'
 
 const covers = [
-  '/586834157_18540090169063026_3893446045643101660_n.jpg',
+  '/476777263_1172193671576886_484753037395174061_n.jpg',
   '/590403149_18545600473063026_1403862960695336920_n.jpg',
   '/604069869_18545600443063026_695876252491310582_n.jpg',
+  '/604444198_18545600464063026_3288618535915015183_n.jpg',
 ]
 
 const statusColors = {
@@ -12,12 +13,6 @@ const statusColors = {
   '已完成': { bg: 'rgba(59,130,246,0.12)', fg: '#1d4ed8', border: '#1d4ed8' },
   '规划中': { bg: 'rgba(245,158,11,0.12)', fg: '#b45309', border: '#b45309' },
 }
-const statusColorsDark = {
-  '进行中': { bg: 'rgba(34,197,94,0.18)', fg: '#4ade80', border: '#4ade80' },
-  '已完成': { bg: 'rgba(59,130,246,0.18)', fg: '#60a5fa', border: '#60a5fa' },
-  '规划中': { bg: 'rgba(245,158,11,0.18)', fg: '#fbbf24', border: '#fbbf24' },
-}
-
 export default function Research() {
   const { t, tr } = useLanguage()
 
@@ -29,7 +24,6 @@ export default function Research() {
       <div className="rcard-list">
         {research.map((item, i) => {
           const sc = statusColors[item.status] || statusColors['规划中']
-          const scd = statusColorsDark[item.status] || statusColorsDark['规划中']
           return (
             <div key={item.id} className="rcard">
               <div className="rcard-text">

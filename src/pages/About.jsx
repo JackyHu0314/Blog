@@ -2,7 +2,7 @@ import { useLanguage } from '../context/LanguageContext'
 import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
 
-const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'Deep Learning', 'Vibe Coding (in progress)', 'Basketball']
+const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Vibe Coding', 'Basketball']
 
 const siteLinks = [
   {
@@ -61,6 +61,13 @@ const EmailIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{fill:'none'}}>
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
     <polyline points="22,6 12,13 2,6"/>
+  </svg>
+)
+
+const HuggingFaceIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+    <circle cx="32" cy="32" r="28" />
+    <text x="32" y="39" textAnchor="middle" fontSize="20" fontWeight="800" fill="var(--color-card-bg)">HF</text>
   </svg>
 )
 
@@ -135,6 +142,7 @@ export default function About() {
           <p className="text-text-secondary text-sm mb-6">{t('about.contactHint')}</p>
           <div className="flex flex-wrap gap-6 justify-start">
             <DynamicCard label="GitHub" icon={GitHubIcon} href="https://github.com/JackyHu0314" description="Code Repository" />
+            <DynamicCard label="Hugging Face" icon={HuggingFaceIcon} href="https://huggingface.co/hax404" description="Models & Datasets" />
             <DynamicCard label="Email" icon={EmailIcon} href="mailto:jackyhu2008.03.14@gmail.com" description="Contact Me" />
             <QRCard label="WeChat" icon={WeChatIcon} src="/wechat-qr.jpg" />
             <QRCard label="QQ" icon={QQIcon} src="/qq-qr.jpg" />

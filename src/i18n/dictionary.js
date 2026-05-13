@@ -39,7 +39,7 @@ export const dict = {
       tagline: '学生 / 开发者',
       intro: '简介',
       introBody:
-        '你好，我是 Jacky，西安交通大学在读生，主修数学。目前主要关注人工智能（Embodied AI）与机器人技术，日常喜欢折腾 Linux 服务端与网络基础设施。',
+        '你好，我是 Jacky，西安交通大学在读生，主修数学。喜欢编程、建网站、摄影、运动和听音乐，日常也会折腾 Linux 服务端与网络基础设施。',
       interests: '兴趣',
       interestsBody: '编程、深度学习、建网站、阅读、摄影、运动、听音乐。喜欢有趣的人，相信技术可以让世界变得更美好。',
       skills: '技能',
@@ -103,7 +103,7 @@ export const dict = {
       tagline: 'Student / Developer',
       intro: 'Intro',
       introBody:
-        "Hi, I'm Jacky, a student at Xi'an Jiaotong University majoring in Mathematics. I focus on AI (Embodied AI) and robotics, and enjoy tinkering with Linux servers and network infrastructure.",
+        "Hi, I'm Jacky, a student at Xi'an Jiaotong University majoring in Mathematics. I enjoy programming, building websites, photography, sports, and music, and I also like tinkering with Linux servers and network infrastructure.",
       interests: 'Interests',
       interestsBody: 'Programming, deep learning, web development, reading, photography, sports, and listening to music. I enjoy meeting interesting people and believe technology makes the world better.',
       skills: 'Skills',

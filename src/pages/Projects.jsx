@@ -2,7 +2,7 @@ import { projects } from '../data/projects'
 import { useLanguage } from '../context/LanguageContext'
 
 const covers = [
-  '/480504610_1175967434532843_8551302010516112648_n.jpg',
+  '/476439329_1169534361842817_5942725893209506020_n.jpg',
   '/485368670_1200446478751605_7891334092090508916_n.jpg',
   '/557670496_18528678928063026_781080253549595360_n.jpg',
 ]
@@ -17,7 +17,7 @@ export default function Projects() {
 
       <div className="pcard-list">
         {projects.map((project, i) => (
-          <a key={project.id} href={project.link} className="pcard">
+          <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="pcard">
             <div className="pcard-text">
               <div className="pcard-tags">
                 {project.tags.map(tag => (

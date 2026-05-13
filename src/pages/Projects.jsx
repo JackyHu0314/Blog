@@ -26,6 +26,7 @@ export default function Projects() {
                 ))}
               </div>
               <h2 className="pcard-title">{tr(project.title)}</h2>
+              <span className="pcard-date">{tr(project.date)}</span>
               <p className="pcard-desc">{tr(project.description)}</p>
               <span className="pcard-link">{t('projects.viewDetail')}</span>
             </div>
@@ -82,6 +83,12 @@ export default function Projects() {
           margin: 0;
         }
         .dark .pcard-title { color: #e8eaed; }
+        .pcard-date {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--color-text-secondary);
+          line-height: 1;
+        }
         .pcard-desc {
           font-size: 14px;
           color: var(--color-text-secondary);

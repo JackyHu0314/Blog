@@ -13,8 +13,18 @@ const statusColors = {
   '已完成': { bg: 'rgba(59,130,246,0.12)', fg: '#1d4ed8', border: '#1d4ed8' },
   '规划中': { bg: 'rgba(245,158,11,0.12)', fg: '#b45309', border: '#b45309' },
 }
+
+const statusOrder = {
+  '规划中': 0,
+  '进行中': 1,
+  '已完成': 2,
+}
+
 export default function Research() {
   const { t, tr } = useLanguage()
+  const orderedResearch = [...research].sort(
+    (a, b) => (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1)
+  )
 
   return (
     <div>
@@ -22,7 +32,7 @@ export default function Research() {
       <p className="text-text-secondary mb-8">{t('research.subtitle')}</p>
 
       <div className="rcard-list">
-        {research.map((item, i) => {
+        {orderedResearch.map((item, i) => {
           const sc = statusColors[item.status] || statusColors['规划中']
           return (
             <div key={item.id} className="rcard">

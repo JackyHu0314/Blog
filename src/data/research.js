@@ -1,30 +1,30 @@
 export const research = [
   {
     id: 3,
-    title: { zh: '具身进阶', en: 'Embodied AI Advanced Study' },
+    title: { zh: '多模态智能与 Agent 方向', en: 'Multimodal Intelligence and Agents' },
     abstract: {
-      zh: '计划系统研读具身智能领域经典论文，梳理感知、规划与控制的核心框架，为后续具身仿真和机器人学习做理论储备。',
-      en: 'Planning to read seminal papers in embodied AI, mapping out core frameworks in perception, planning, and control as theoretical groundwork for later embodied simulation and robot learning.',
+      zh: '计划围绕 VLA、MLLM、Agent 等方向做系统学习，重点关注它们背后的共性问题：多模态理解、决策规划、工具调用、任务执行与环境交互，为后续不同研究方向打基础。',
+      en: 'Planning to study VLA, MLLM, and agent-related directions through shared problems such as multimodal understanding, decision planning, tool use, task execution, and environment interaction.',
     },
     status: '规划中',
-    tags: ['Embodied AI', 'Robotics', 'Paper Reading'],
+    tags: ['VLA', 'MLLM', 'Agent', 'Multimodal AI'],
   },
   {
     id: 4,
-    title: { zh: '具身仿真器学习计划', en: 'Embodied Simulation Plan' },
+    title: { zh: '后续学习计划', en: 'Future Study Plan' },
     abstract: {
-      zh: '下一阶段计划学习 MuJoCo、Gymnasium Robotics、ManiSkill 和 Isaac Sim / Isaac Lab，重点理解机器人连续控制、仿真环境搭建、远程训练与 sim-to-real 的基础流程。',
-      en: 'Next, I plan to learn MuJoCo, Gymnasium Robotics, ManiSkill, and Isaac Sim / Isaac Lab, focusing on robot continuous control, simulator setup, remote training, and the basics of sim-to-real workflows.',
+      zh: '后续会继续补齐强化学习、多模态大模型、智能体系统、交互环境与工程实践等基础。现阶段先建立通用能力，之后再根据具体课题和导师方向深入。',
+      en: 'Next, I will keep building foundations in reinforcement learning, multimodal models, agent systems, interactive environments, and engineering practice before going deeper based on specific research topics and advisors.',
     },
     status: '规划中',
-    tags: ['Embodied AI', 'MuJoCo', 'Isaac Sim', 'ManiSkill'],
+    tags: ['RL', 'Multimodal Models', 'Agent Systems', 'Engineering'],
   },
   {
     id: 1,
     title: { zh: '强化学习系统学习', en: 'Reinforcement Learning Study' },
     abstract: {
-      zh: '在完成深度学习基础后，当前重点学习强化学习的核心算法与工程实践，包括 MDP、策略梯度、Actor-Critic、PPO / SAC，以及如何把算法跑在连续控制任务上。',
-      en: 'After finishing deep-learning foundations, I am now focusing on reinforcement learning algorithms and engineering practice, including MDPs, policy gradients, Actor-Critic, PPO / SAC, and continuous-control tasks.',
+      zh: '在完成深度学习基础后，当前重点学习强化学习的核心概念与工程实践，包括 MDP、策略梯度、Actor-Critic、PPO / SAC，以及如何把算法稳定跑在实验环境中。',
+      en: 'After finishing deep-learning foundations, I am focusing on core reinforcement-learning concepts and engineering practice, including MDPs, policy gradients, Actor-Critic, PPO / SAC, and stable experiment workflows.',
     },
     status: '进行中',
     tags: ['Reinforcement Learning', 'PPO', 'SAC', 'Control'],

@@ -3,7 +3,7 @@ import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
 import HuggingFaceIcon from '../components/HuggingFaceIcon'
 
-const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Adobe Premiere Pro', 'Basketball']
+const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Adobe Premiere Pro']
 
 const siteLinks = [
   {

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "blog-comments-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-04",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://www.jackyhu.top,https://jackyhu.top,http://localhost:5173,http://127.0.0.1:5173",
+    "COMMENTS_REQUIRE_APPROVAL": "true"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "blog-comments",
+      "database_id": "replace-with-d1-database-id",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

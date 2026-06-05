@@ -17,7 +17,7 @@ export default function Projects() {
 
       <div className="pcard-list">
         {projects.map((project, i) => (
-          <a key={project.id} href={project.link} className="pcard">
+          <a key={project.id} href={project.link} className="pcard" target="_blank" rel="noreferrer">
             <div className="pcard-text">
               <div className="pcard-tags">
                 {project.tags.map(tag => (

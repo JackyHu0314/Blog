@@ -1,3 +1,0 @@
-TURNSTILE_SECRET_KEY=replace-with-turnstile-secret-key
-IP_HASH_SALT=replace-with-random-long-string
-ADMIN_TOKEN=replace-with-random-admin-token

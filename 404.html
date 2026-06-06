@@ -1,29 +1,39 @@
 <!doctype html>
-<html>
+<html lang="zh-CN">
   <head>
-    <meta charset="utf-8" />
-    <title>Redirecting…</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jacky's Blog</title>
     <script>
-      ;(function () {
-        var locationInfo = window.location
-        var pathSegmentsToKeep = locationInfo.hostname.endsWith('github.io') ? 1 : 0
-        var pathParts = locationInfo.pathname.split('/')
-        var basePath = pathParts.slice(0, 1 + pathSegmentsToKeep).join('/')
-        var routePath = pathParts.slice(1 + pathSegmentsToKeep).join('/')
+      ;(function (locationInfo) {
+        if (locationInfo.search[1] !== '/') return
 
-        locationInfo.replace(
-          locationInfo.protocol +
-            '//' +
-            locationInfo.hostname +
-            (locationInfo.port ? ':' + locationInfo.port : '') +
-            basePath +
-            '/?/' +
-            routePath.replace(/&/g, '~and~') +
-            (locationInfo.search ? '&' + locationInfo.search.slice(1).replace(/&/g, '~and~') : '') +
-            locationInfo.hash,
-        )
-      })()
+        var decodedPath = locationInfo.search
+          .slice(1)
+          .split('&')
+          .map(function (segment) {
+            return segment.replace(/~and~/g, '&')
+          })
+          .join('?')
+
+        window.history.replaceState(null, null, locationInfo.pathname.slice(0, -1) + decodedPath + locationInfo.hash)
+      })(window.location)
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme-preference');
+        var d = t === 'dark' || (!t || t === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (d) document.documentElement.classList.add('dark');
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BAwwC-f_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-sNygIgEN.css">
   </head>
-  <body></body>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

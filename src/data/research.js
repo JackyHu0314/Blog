@@ -1,23 +1,23 @@
 export const research = [
   {
     id: 3,
-    title: { zh: '多模态智能与 Agent 方向', en: 'Multimodal Intelligence and Agents' },
+    title: { zh: 'VLA 与具身智能', en: 'VLA and Embodied Intelligence' },
     abstract: {
-      zh: '计划围绕 VLA、MLLM、Agent 等方向做系统学习，重点关注它们背后的共性问题：多模态理解、决策规划、工具调用、任务执行与环境交互，为后续不同研究方向打基础。',
-      en: 'Planning to study VLA, MLLM, and agent-related directions through shared problems such as multimodal understanding, decision planning, tool use, task execution, and environment interaction.',
+      zh: '关注 Vision-Language-Action 模型如何把视觉理解、语言指令、动作规划和环境交互连起来，让模型从“看懂和回答”进一步走向“能执行任务”。后续会重点补机器人学习、强化学习和多模态决策基础。',
+      en: 'Focusing on how Vision-Language-Action models connect visual understanding, language instructions, action planning, and environment interaction, moving from perception and response toward task execution. Next steps include robot learning, reinforcement learning, and multimodal decision-making foundations.',
     },
     status: '规划中',
-    tags: ['VLA', 'MLLM', 'Agent', 'Multimodal AI'],
+    tags: ['VLA', 'Embodied AI', 'Robotics', 'Multimodal AI'],
   },
   {
     id: 4,
-    title: { zh: '后续学习计划', en: 'Future Study Plan' },
+    title: { zh: '3D 生成与可控资产生成', en: '3D Generation and Controllable Asset Creation' },
     abstract: {
-      zh: '后续会继续补齐强化学习、多模态大模型、智能体系统、交互环境与工程实践等基础。现阶段先建立通用能力，之后再根据具体课题和导师方向深入。',
-      en: 'Next, I will keep building foundations in reinforcement learning, multimodal models, agent systems, interactive environments, and engineering practice before going deeper based on specific research topics and advisors.',
+      zh: '关注现代 3D 生成系统从单物体重建、原生 3D 表征、纹理与材质生成，到可编辑资产和世界级场景生成的完整链路。学习重点不是按论文时间线堆叠，而是理解每一阶段解决了什么瓶颈。',
+      en: 'Studying modern 3D generation systems across single-object reconstruction, native 3D representations, texture/material generation, editable assets, and world-level scene generation. The focus is on the system logic and bottlenecks each stage solves, rather than a paper-by-paper timeline.',
     },
-    status: '规划中',
-    tags: ['RL', 'Multimodal Models', 'Agent Systems', 'Engineering'],
+    status: '进行中',
+    tags: ['3D Generation', 'Reconstruction', 'Editable Assets', 'World Models'],
   },
   {
     id: 1,

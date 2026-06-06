@@ -1,4 +1,4 @@
-import { useLanguage } from '../context/LanguageContext'
+import { useLanguage } from '../context/useLanguage'
 import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
 import HuggingFaceIcon from '../components/HuggingFaceIcon'

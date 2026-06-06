@@ -1,5 +1,16 @@
 export const projects = [
   {
+    id: 6,
+    title: { zh: 'Mario 强化学习元学习', en: 'Mario RL Meta-Learning' },
+    description: {
+      zh: '一个 Super Mario Bros 强化学习项目，使用 PPO 和 Reptile 风格元学习从零训练模型，把不同关卡视为不同任务，观察初始化参数在新关卡上的快速适应能力。项目已跑通训练、评估、续训、遗忘度记录和实验图表整理。',
+      en: 'A Super Mario Bros reinforcement-learning project that trains models from scratch with PPO and Reptile-style meta-learning. It treats Mario levels as separate tasks and evaluates fast adaptation on unseen levels, with training, evaluation, continued training, forgetting measurement, and experiment charts.',
+    },
+    date: { zh: '2026 年 5 月', en: 'May 2026' },
+    tags: ['Python', 'PyTorch', 'PPO', 'Reptile', 'Reinforcement Learning'],
+    link: 'https://github.com/JackyHu0314/-Mario-RL-Meta-Learning',
+  },
+  {
     id: 4,
     title: { zh: '图像风格迁移', en: 'Neural Style Transfer' },
     description: {

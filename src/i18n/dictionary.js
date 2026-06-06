@@ -19,8 +19,24 @@ export const dict = {
     landing: {
       greeting: '你好，我是 Jacky',
       subtitle: '欢迎来到我的小世界 — 记录生活、学业与学习轨迹',
+      profileSubtitle: '喜欢编程、摄影、运动和音乐',
       enter: '进入博客 →',
       entering: '进入中…',
+      sections: {
+        education: '教育经历',
+        stats: '博客统计',
+        activity: '博客活跃度',
+      },
+      education: {
+        school: '西安交通大学',
+        department: '数学学院 · 本科在读',
+      },
+      stats: {
+        days: '在线天数',
+        lastUpdated: '最后更新',
+        words: '总字数',
+        posts: '总文章数',
+      },
     },
     journal: {
       title: '随记',
@@ -83,8 +99,24 @@ export const dict = {
     landing: {
       greeting: "Hi, I'm Jacky",
       subtitle: 'Welcome to my little world — notes on life, study, and research',
+      profileSubtitle: 'Programming, photography, sports, and music',
       enter: 'Enter →',
       entering: 'Entering…',
+      sections: {
+        education: 'Education',
+        stats: 'Blog Stats',
+        activity: 'Blog Activity',
+      },
+      education: {
+        school: "Xi'an Jiaotong University",
+        department: 'School of Mathematics · Undergraduate',
+      },
+      stats: {
+        days: 'Days Online',
+        lastUpdated: 'Last Updated',
+        words: 'Total Words',
+        posts: 'Total Posts',
+      },
     },
     journal: {
       title: 'Journal',

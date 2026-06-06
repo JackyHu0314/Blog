@@ -1,11 +1,12 @@
 import { projects } from '../data/projects'
-import { useLanguage } from '../context/LanguageContext'
+import { useLanguage } from '../context/useLanguage'
 
 const covers = [
   '/476439329_1169534361842817_5942725893209506020_n.jpg',
   '/485368670_1200446478751605_7891334092090508916_n.jpg',
   '/557670496_18528678928063026_781080253549595360_n.jpg',
   '/605389799_18545600452063026_1347790464670012594_n.jpg',
+  '/476777263_1172193671576886_484753037395174061_n.jpg',
 ]
 
 export default function Projects() {
@@ -17,24 +18,30 @@ export default function Projects() {
       <p className="text-text-secondary mb-8">{t('projects.subtitle')}</p>
 
       <div className="pcard-list">
-        {projects.map((project, i) => (
-          <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="pcard">
-            <div className="pcard-text">
-              <div className="pcard-tags">
-                {project.tags.map(tag => (
-                  <span key={tag} className="pcard-tag">{tag}</span>
-                ))}
+        {projects.map((project, i) => {
+          const cover = covers[i]
+
+          return (
+            <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="pcard">
+              <div className="pcard-text">
+                <div className="pcard-tags">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="pcard-tag">{tag}</span>
+                  ))}
+                </div>
+                <h2 className="pcard-title">{tr(project.title)}</h2>
+                <span className="pcard-date">{tr(project.date)}</span>
+                <p className="pcard-desc">{tr(project.description)}</p>
+                <span className="pcard-link">{t('projects.viewDetail')}</span>
               </div>
-              <h2 className="pcard-title">{tr(project.title)}</h2>
-              <span className="pcard-date">{tr(project.date)}</span>
-              <p className="pcard-desc">{tr(project.description)}</p>
-              <span className="pcard-link">{t('projects.viewDetail')}</span>
-            </div>
-            <div className="pcard-img-wrap">
-              <img src={covers[i % covers.length]} alt="" className="pcard-img" loading="lazy" />
-            </div>
-          </a>
-        ))}
+              {cover && (
+                <div className="pcard-img-wrap">
+                  <img src={cover} alt="" className="pcard-img" loading="lazy" />
+                </div>
+              )}
+            </a>
+          )
+        })}
       </div>
 
       <style>{`

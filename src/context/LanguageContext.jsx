@@ -1,7 +1,6 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
+import { LanguageContext } from './language-context'
 import { dict, pick } from '../i18n/dictionary'
-
-const LanguageContext = createContext()
 
 function getInitialLang() {
   const stored = localStorage.getItem('lang')
@@ -46,8 +45,4 @@ export function LanguageProvider({ children }) {
       {children}
     </LanguageContext.Provider>
   )
-}
-
-export function useLanguage() {
-  return useContext(LanguageContext)
 }

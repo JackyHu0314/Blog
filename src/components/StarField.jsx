@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '../context/useTheme'
 
 export default function StarField() {
   const canvasRef = useRef(null)

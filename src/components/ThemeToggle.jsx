@@ -1,5 +1,5 @@
-import { useTheme } from '../context/ThemeContext'
-import { useLanguage } from '../context/LanguageContext'
+import { useTheme } from '../context/useTheme'
+import { useLanguage } from '../context/useLanguage'
 
 const icons = {
   light: (

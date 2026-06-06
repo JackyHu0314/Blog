@@ -7,11 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "comments:dev": "cd workers/comments && npx wrangler dev",
-    "comments:deploy": "cd workers/comments && npx wrangler deploy",
-    "comments:migrate:local": "cd workers/comments && npx wrangler d1 migrations apply blog-comments --local",
-    "comments:migrate:remote": "cd workers/comments && npx wrangler d1 migrations apply blog-comments --remote"
+    "check": "npm run lint && npm run build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.4",

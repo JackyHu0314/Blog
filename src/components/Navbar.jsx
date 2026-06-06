@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 import SearchBox from './SearchBox'
-import { useLanguage } from '../context/LanguageContext'
+import { useLanguage } from '../context/useLanguage'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)

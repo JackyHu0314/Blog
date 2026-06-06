@@ -1,4 +1,4 @@
-import { useLanguage } from '../context/useLanguage'
+import { useLanguage } from '../context/LanguageContext'
 import { research } from '../data/research'
 
 const covers = [
@@ -34,8 +34,6 @@ export default function Research() {
       <div className="rcard-list">
         {orderedResearch.map((item, i) => {
           const sc = statusColors[item.status] || statusColors['规划中']
-          const cover = covers[i]
-
           return (
             <div key={item.id} className="rcard">
               <div className="rcard-text">
@@ -54,11 +52,9 @@ export default function Research() {
                   ))}
                 </div>
               </div>
-              {cover && (
-                <div className="rcard-img-wrap">
-                  <img src={cover} alt="" className="rcard-img" loading="lazy" />
-                </div>
-              )}
+              <div className="rcard-img-wrap">
+                <img src={covers[i % covers.length]} alt="" className="rcard-img" loading="lazy" />
+              </div>
             </div>
           )
         })}

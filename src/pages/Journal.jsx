@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { journals } from '../data/journals'
-import { useLanguage } from '../context/useLanguage'
+import { useLanguage } from '../context/LanguageContext'
 import CategoryBadge from '../components/CategoryBadge'
 
 const categories = ['全部', '情感', '学业', '科研', '生活', '技术']

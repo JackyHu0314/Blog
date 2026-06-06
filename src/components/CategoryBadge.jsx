@@ -1,4 +1,4 @@
-import { useLanguage } from '../context/useLanguage'
+import { useLanguage } from '../context/LanguageContext'
 
 const colors = {
   '情感': {

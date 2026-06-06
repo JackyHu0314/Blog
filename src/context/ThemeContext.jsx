@@ -1,5 +1,10 @@
-import { useState, useEffect } from 'react'
-import { ThemeContext } from './theme-context'
+import { createContext, useContext, useState, useEffect } from 'react'
+
+const ThemeContext = createContext()
+
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
 
 function getInitialTheme() {
   const stored = localStorage.getItem('theme-preference')
@@ -35,4 +40,8 @@ export function ThemeProvider({ children }) {
       {children}
     </ThemeContext.Provider>
   )
+}
+
+export function useTheme() {
+  return useContext(ThemeContext)
 }

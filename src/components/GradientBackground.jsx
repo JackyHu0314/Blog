@@ -1,4 +1,4 @@
-import { useTheme } from '../context/useTheme'
+import { useTheme } from '../context/ThemeContext'
 
 export default function GradientBackground() {
   const { theme } = useTheme()

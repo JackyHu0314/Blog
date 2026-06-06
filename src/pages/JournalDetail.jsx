@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { journals } from '../data/journals'
-import { useLanguage } from '../context/useLanguage'
+import { useLanguage } from '../context/LanguageContext'
 import CategoryBadge from '../components/CategoryBadge'
 import TableOfContents from '../components/TableOfContents'
 import CommentSection from '../components/CommentSection'

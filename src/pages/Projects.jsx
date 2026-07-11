@@ -5,6 +5,7 @@ const covers = [
   '/470494883_18474095842063026_901716736404074832_n.jpg',
   '/485368670_1200446478751605_7891334092090508916_n.jpg',
   '/557670496_18528678928063026_781080253549595360_n.jpg',
+  '/605389799_18545600452063026_1347790464670012594_n.jpg',
 ]
 
 export default function Projects() {
@@ -25,6 +26,7 @@ export default function Projects() {
                 ))}
               </div>
               <h2 className="pcard-title">{tr(project.title)}</h2>
+              <span className="pcard-date">{tr(project.date)}</span>
               <p className="pcard-desc">{tr(project.description)}</p>
               <span className="pcard-link">{t('projects.viewDetail')}</span>
             </div>
@@ -81,6 +83,12 @@ export default function Projects() {
           margin: 0;
         }
         .dark .pcard-title { color: #e8eaed; }
+        .pcard-date {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--color-text-secondary);
+          line-height: 1;
+        }
         .pcard-desc {
           font-size: 14px;
           color: var(--color-text-secondary);

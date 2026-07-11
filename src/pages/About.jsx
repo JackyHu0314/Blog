@@ -1,14 +1,15 @@
 import { useLanguage } from '../context/LanguageContext'
 import DynamicCard from '../components/DynamicCard'
 import QRCard from '../components/QRCard'
+import HuggingFaceIcon from '../components/HuggingFaceIcon'
 
-const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'Deep Learning', 'Vibe Coding (in progress)', 'Basketball']
+const skills = ['Python', 'C++', 'C', 'Bash', 'Git', 'PyTorch', 'Deep Learning', 'Adobe Premiere Pro']
 
 const siteLinks = [
   {
     name: 'GitHub',
     url: 'https://github.com/JackyHu0314',
-    desc: '代码仓库',
+    desc: { zh: '代码仓库', en: 'Code repositories' },
     color: '#24262a',
     icon: (
       <svg viewBox="0 0 16 16" fill="currentColor" width="22" height="22">
@@ -19,7 +20,7 @@ const siteLinks = [
   {
     name: 'GitHub Pages',
     url: 'https://pages.github.com',
-    desc: '静态托管',
+    desc: { zh: '静态网页分发', en: 'Static site delivery' },
     color: '#24262a',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -30,7 +31,7 @@ const siteLinks = [
   {
     name: '西安交通大学数学学院',
     url: 'https://math.xjtu.edu.cn/',
-    desc: '我的学院',
+    desc: { zh: '学院主页', en: 'School homepage' },
     color: '#8b1a1a',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -73,7 +74,7 @@ const QQIcon = (
 )
 
 export default function About() {
-  const { t } = useLanguage()
+  const { t, tr, lang } = useLanguage()
 
   return (
     <div>
@@ -110,16 +111,17 @@ export default function About() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-3 text-text-primary">网页分发</h2>
-          <p className="text-text-secondary text-sm mb-5">本站部署于以下平台</p>
+          <h2 className="text-xl font-bold mb-5 text-text-primary">
+            {lang === 'zh' ? '相关链接' : 'Links'}
+          </h2>
           <div className="site-links">
             {siteLinks.map(s => (
-              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="site-link-item" style={{ '--sl-color': s.color }}>
+              <a key={tr(s.name)} href={s.url} target="_blank" rel="noopener noreferrer" className="site-link-item" style={{ '--sl-color': s.color }}>
                 <div className="sl-filled" />
                 <span className="sl-icon">{s.icon}</span>
                 <div className="sl-info">
-                  <span className="sl-name">{s.name}</span>
-                  <span className="sl-desc">{s.desc}</span>
+                  <span className="sl-name">{tr(s.name)}</span>
+                  <span className="sl-desc">{tr(s.desc)}</span>
                 </div>
               </a>
             ))}
@@ -131,6 +133,7 @@ export default function About() {
           <p className="text-text-secondary text-sm mb-6">{t('about.contactHint')}</p>
           <div className="flex flex-wrap gap-6 justify-start">
             <DynamicCard label="GitHub" icon={GitHubIcon} href="https://github.com/JackyHu0314" description="Code Repository" />
+            <DynamicCard label="Hugging Face" icon={<HuggingFaceIcon />} href="https://huggingface.co/hax404" description="Models & Datasets" />
             <DynamicCard label="Email" icon={EmailIcon} href="mailto:jackyhu2008.03.14@gmail.com" description="Contact Me" />
             <DynamicCard label="JackyUnique" icon={XiaohongshuIcon} href="https://www.xiaohongshu.com/search_result?keyword=JackyUnique" description="Xiaohongshu / 小红书" />
             <QRCard label="WeChat" icon={WeChatIcon} src="/wechat-qr.jpg" />

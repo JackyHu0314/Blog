@@ -1,48 +1,31 @@
-import { useEffect, useMemo, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function TableOfContents({ body }) {
+export default function TableOfContents({ headings = [] }) {
   const [active, setActive] = useState('')
-  const observerRef = useRef(null)
-
-  const headings = useMemo(() => {
-    if (!body) return []
-    const lines = body.split('\n')
-    const found = []
-    lines.forEach(line => {
-      if (line.startsWith('## ')) found.push({ level: 2, text: line.slice(3).trim() })
-      else if (line.startsWith('### ')) found.push({ level: 3, text: line.slice(4).trim() })
-      else if (line.startsWith('#### ')) found.push({ level: 4, text: line.slice(5).trim() })
-    })
-    return found
-  }, [body])
 
   useEffect(() => {
     if (headings.length === 0) return
-    const els = document.querySelectorAll('.article-h2, .article-h3, .article-h4')
+    const els = headings
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean)
     if (els.length === 0) return
 
-    observerRef.current = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) setActive(e.target.textContent.trim())
+          if (e.isIntersecting) setActive(e.target.id)
         })
       },
       { rootMargin: '-10% 0px -80% 0px' }
     )
-    els.forEach(el => observerRef.current.observe(el))
-    return () => observerRef.current?.disconnect()
+    els.forEach(el => observer.observe(el))
+    return () => observer.disconnect()
   }, [headings])
 
   if (headings.length === 0) return null
 
-  const scrollTo = (text) => {
-    const els = document.querySelectorAll('.article-h2, .article-h3, .article-h4')
-    for (const el of els) {
-      if (el.textContent.trim() === text) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        break
-      }
-    }
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -51,10 +34,7 @@ export default function TableOfContents({ body }) {
       <ul className="toc-list">
         {headings.map((h, i) => (
           <li key={i} className={`toc-item toc-level-${h.level}`}>
-            <button
-              className={`toc-btn ${active === h.text ? 'toc-active' : ''}`}
-              onClick={() => scrollTo(h.text)}
-            >
+            <button className={`toc-btn ${active === h.id ? 'toc-active' : ''}`} onClick={() => scrollTo(h.id)}>
               {h.text}
             </button>
           </li>

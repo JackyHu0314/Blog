@@ -1,32 +1,42 @@
 export const research = [
   {
-    id: 1,
-    title: { zh: '具身智能基础学习', en: 'Foundations of Embodied AI' },
+    id: 3,
+    title: { zh: '多模态智能与 Agent 方向', en: 'Multimodal Intelligence and Agents' },
     abstract: {
-      zh: '计划系统研读具身智能领域经典论文，梳理感知、规划与控制的核心框架，为进入课题组做理论储备。',
-      en: 'Planning to read seminal papers in embodied AI, mapping out core frameworks in perception, planning, and control as theoretical groundwork before joining a lab.',
+      zh: '计划围绕 VLA、MLLM、Agent 等方向做系统学习，重点关注它们背后的共性问题：多模态理解、决策规划、工具调用、任务执行与环境交互，为后续不同研究方向打基础。',
+      en: 'Planning to study VLA, MLLM, and agent-related directions through shared problems such as multimodal understanding, decision planning, tool use, task execution, and environment interaction.',
     },
     status: '规划中',
-    tags: ['Embodied AI', 'Robotics', 'Paper Reading'],
+    tags: ['VLA', 'MLLM', 'Agent', 'Multimodal AI'],
+  },
+  {
+    id: 4,
+    title: { zh: '后续学习计划', en: 'Future Study Plan' },
+    abstract: {
+      zh: '后续会继续补齐强化学习、多模态大模型、智能体系统、交互环境与工程实践等基础。现阶段先建立通用能力，之后再根据具体课题和导师方向深入。',
+      en: 'Next, I will keep building foundations in reinforcement learning, multimodal models, agent systems, interactive environments, and engineering practice before going deeper based on specific research topics and advisors.',
+    },
+    status: '规划中',
+    tags: ['RL', 'Multimodal Models', 'Agent Systems', 'Engineering'],
+  },
+  {
+    id: 1,
+    title: { zh: '强化学习系统学习', en: 'Reinforcement Learning Study' },
+    abstract: {
+      zh: '在完成深度学习基础后，当前重点学习强化学习的核心概念与工程实践，包括 MDP、策略梯度、Actor-Critic、PPO / SAC，以及如何把算法稳定跑在实验环境中。',
+      en: 'After finishing deep-learning foundations, I am focusing on core reinforcement-learning concepts and engineering practice, including MDPs, policy gradients, Actor-Critic, PPO / SAC, and stable experiment workflows.',
+    },
+    status: '进行中',
+    tags: ['Reinforcement Learning', 'PPO', 'SAC', 'Control'],
   },
   {
     id: 2,
-    title: { zh: '机器学习入门', en: 'Machine Learning Fundamentals' },
+    title: { zh: '深度学习基础', en: 'Deep Learning Foundations' },
     abstract: {
-      zh: '跟随 CS231n 系统学习深度学习理论，同步用 PyTorch 动手实现 CNN 等经典网络，建立扎实的算法与工程基础。',
-      en: 'Following CS231n to learn deep learning theory while implementing classic networks like CNN in PyTorch to build solid algorithmic and engineering foundations.',
+      zh: '已完成 CS231n 和 B 站小土堆深度学习基础学习，并通过 PyTorch 实现 CNN、中文情感分析等项目，建立了神经网络训练、调参与部署实验的基本能力。',
+      en: 'Finished CS231n and Xiaotudui deep-learning foundations, then practiced with PyTorch projects such as CNN digit recognition and Chinese sentiment analysis to build core skills in training, tuning, and experimenting with neural networks.',
     },
-    status: '进行中',
-    tags: ['Deep Learning', 'CS231n', 'PyTorch'],
-  },
-  {
-    id: 3,
-    title: { zh: 'AI 辅助编程与 Vibe Coding', en: 'AI-assisted Coding & Vibe Coding' },
-    abstract: {
-      zh: '学习 AI 辅助编程方法，探索 vibe coding 工作流，提升开发效率并将其应用于个人项目迭代。',
-      en: 'Learning AI-assisted development methods, exploring vibe coding workflows to boost productivity and apply them to personal projects.',
-    },
-    status: '进行中',
-    tags: ['AI Coding', 'Vibe Coding', 'AI Tools'],
+    status: '已完成',
+    tags: ['Deep Learning', 'CS231n', 'PyTorch', 'CNN'],
   },
 ]

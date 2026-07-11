@@ -7,6 +7,7 @@ export default function PageLoader() {
   const [visible, setVisible] = useState(false)
   const firstRender = useRef(true)
   const timerRef = useRef(null)
+  const hideTimerRef = useRef(null)
   const rafRef = useRef(null)
 
   useEffect(() => {
@@ -26,11 +27,12 @@ export default function PageLoader() {
     timerRef.current = setTimeout(() => {
       cancelAnimationFrame(rafRef.current)
       setProgress(100)
-      setTimeout(() => setVisible(false), 300)
+      hideTimerRef.current = setTimeout(() => setVisible(false), 300)
     }, 500)
 
     return () => {
       clearTimeout(timerRef.current)
+      clearTimeout(hideTimerRef.current)
       cancelAnimationFrame(rafRef.current)
     }
   }, [location.pathname])
@@ -54,10 +56,10 @@ export default function PageLoader() {
         style={{
           height: '100%',
           width: `${progress}%`,
-          background: 'linear-gradient(90deg, #a855f7, #ec4899, #06b6d4)',
+          background: 'linear-gradient(90deg, transparent, var(--color-accent) 35%, #e7b267)',
           transition: progress === 100 ? 'width 0.15s ease, opacity 0.3s ease' : 'width 0.1s linear',
           opacity: progress === 100 ? 0 : 1,
-          boxShadow: '0 0 8px rgba(168,85,247,0.8)',
+          boxShadow: '0 0 12px color-mix(in srgb, var(--color-accent) 70%, transparent)',
         }}
       />
     </div>

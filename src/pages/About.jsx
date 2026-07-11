@@ -17,17 +17,6 @@ const siteLinks = [
     ),
   },
   {
-    name: '云服务器',
-    url: '#',
-    desc: '自托管部署',
-    color: '#0f4c81',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-        <path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-      </svg>
-    ),
-  },
-  {
     name: 'GitHub Pages',
     url: 'https://pages.github.com',
     desc: '静态托管',
@@ -61,6 +50,13 @@ const EmailIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{fill:'none'}}>
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
     <polyline points="22,6 12,13 2,6"/>
+  </svg>
+)
+
+const XiaohongshuIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="4" />
+    <path d="M7 9h10M7 13h7M7 17h4" />
   </svg>
 )
 
@@ -136,6 +132,7 @@ export default function About() {
           <div className="flex flex-wrap gap-6 justify-start">
             <DynamicCard label="GitHub" icon={GitHubIcon} href="https://github.com/JackyHu0314" description="Code Repository" />
             <DynamicCard label="Email" icon={EmailIcon} href="mailto:jackyhu2008.03.14@gmail.com" description="Contact Me" />
+            <DynamicCard label="JackyUnique" icon={XiaohongshuIcon} href="https://www.xiaohongshu.com/search_result?keyword=JackyUnique" description="Xiaohongshu / 小红书" />
             <QRCard label="WeChat" icon={WeChatIcon} src="/wechat-qr.jpg" />
             <QRCard label="QQ" icon={QQIcon} src="/qq-qr.jpg" />
           </div>
@@ -154,7 +151,7 @@ export default function About() {
           align-items: center;
           gap: 12px;
           padding: 12px 18px;
-          border-radius: 12px;
+          border-radius: 3px;
           border: 1px solid var(--color-card-border);
           background: var(--color-card-bg);
           text-decoration: none;

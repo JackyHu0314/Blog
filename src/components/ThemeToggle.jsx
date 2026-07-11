@@ -22,7 +22,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors"
+      className="icon-button"
       title={theme === 'dark' ? t('theme.dark') : t('theme.light')}
       aria-label={theme === 'dark' ? t('theme.dark') : t('theme.light')}
     >

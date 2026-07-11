@@ -11,83 +11,57 @@ export default function Navbar() {
 
   const links = [
     { to: '/journal', key: 'nav.journal' },
-    { to: '/about', key: 'nav.about' },
+    { to: '/music', key: 'nav.music' },
     { to: '/projects', key: 'nav.projects' },
     { to: '/research', key: 'nav.research' },
+    { to: '/about', key: 'nav.about' },
   ]
 
+  const navClass = ({ isActive }) => 'nav-link' + (isActive ? ' is-active' : '')
+
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-nav-bg border-b border-card-border">
-      <div className="max-w-[1024px] mx-auto px-6 h-16 flex items-center justify-between">
-        <NavLink
-          to="/"
-          className="brand-link text-2xl font-bold tracking-tight text-text-primary"
-        >
-          Jacky's Blog
+    <nav className="site-nav" aria-label="Primary navigation">
+      <div className="nav-inner">
+        <NavLink to="/" className="brand-link" aria-label="Jacky's Field Notes home" onClick={() => setOpen(false)}>
+          <span className="brand-name brand-name-full">Jacky’s Field Notes</span>
+          <span className="brand-name brand-name-short">J / Notes</span>
+          <span className="brand-meta">XJTU · EST. 2025</span>
         </NavLink>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="nav-desktop">
           {links.map(({ to, key }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `pearl-nav-btn ${isActive ? 'pearl-nav-active' : ''}`
-              }
-            >
-              <div className="pearl-wrap">
-                <p>
-                  <span>✧</span>
-                  <span>✦</span>
-                  {t(key)}
-                </p>
-              </div>
+            <NavLink key={to} to={to} className={navClass} onClick={() => setOpen(false)}>
+              {t(key)}
             </NavLink>
           ))}
-
-          <div className="mx-2"><SearchBox /></div>
-          <LanguageToggle />
-          <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="nav-actions">
+          <SearchBox />
           <LanguageToggle />
           <ThemeToggle />
           <button
-            onClick={() => setOpen(!open)}
-            className="p-2 text-text-secondary hover:text-text-primary"
-            aria-label="menu"
+            type="button"
+            className="mobile-menu-button"
+            onClick={() => setOpen((current) => !current)}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            aria-label={open ? 'Close menu' : 'Open menu'}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-              {open ? (
-                <path d="M18 6L6 18M6 6l12 12" />
-              ) : (
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              )}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="19" height="19" aria-hidden="true">
+              {open ? <path d="M5 5l14 14M19 5 5 19" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-card-border bg-nav-bg px-6 py-4 space-y-3">
+        <div id="mobile-navigation" className="mobile-panel">
           {links.map(({ to, key }) => (
-            <NavLink
-              key={to}
-              to={to}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `nav-link block px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive ? 'is-active' : 'text-text-secondary'
-                }`
-              }
-            >
-              <span className="nav-link-text">{t(key)}</span>
+            <NavLink key={to} to={to} className={navClass} onClick={() => setOpen(false)}>
+              {t(key)}
             </NavLink>
           ))}
-          <div className="pt-3">
-            <SearchBox />
-          </div>
         </div>
       )}
     </nav>

@@ -2,6 +2,7 @@ export const dict = {
   zh: {
     nav: {
       journal: '随记',
+      music: '音乐',
       about: '关于我',
       projects: '项目',
       research: '科研',
@@ -66,6 +67,7 @@ export const dict = {
   en: {
     nav: {
       journal: 'Journal',
+      music: 'Music',
       about: 'About',
       projects: 'Projects',
       research: 'Research',

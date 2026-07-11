@@ -1,10 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const ThemeContext = createContext()
-
-function getSystemTheme() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
 
 function getInitialTheme() {
   const stored = localStorage.getItem('theme-preference')
@@ -18,6 +15,9 @@ function applyTheme(theme) {
   } else {
     document.documentElement.classList.remove('dark')
   }
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', theme === 'dark' ? '#10100f' : '#ece9e1')
 }
 
 export function ThemeProvider({ children }) {

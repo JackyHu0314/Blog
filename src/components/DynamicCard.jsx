@@ -1,148 +1,75 @@
-import { useState } from 'react'
-
-export default function DynamicCard({
-  label,
-  icon,
-  href,
-  description,
-  flipBack = null,
-}) {
-  const [flipped, setFlipped] = useState(false)
-  const Tag = href ? 'a' : 'div'
-  const linkProps = href
-    ? { href, target: '_blank', rel: 'noopener noreferrer' }
-    : flipBack
-    ? { onClick: () => setFlipped(f => !f), role: 'button', tabIndex: 0 }
-    : {}
-
+export default function DynamicCard({ label, icon, href, description }) {
   return (
-    <Tag
-      {...linkProps}
-      className={`dyn-card ${flipBack ? 'dyn-card-flip' : ''} ${flipped ? 'is-flipped' : ''}`}
+    <a
+      href={href}
+      target={href?.startsWith('mailto:') ? undefined : '_blank'}
+      rel={href?.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+      className="dyn-card"
       aria-label={label}
-      style={{ perspective: '1000px' }}
     >
-      <div className={`dyn-inner ${flipped ? 'dyn-inner-flipped' : ''}`}>
-        {/* Front */}
-        <div className="dyn-face dyn-front">
-          <div className="icon">{icon}</div>
-          <div className="textBox">
-            <p className="text head">{label}</p>
-            {description && <span>{description}</span>}
-          </div>
-        </div>
-
-        {/* Back */}
-        {flipBack && (
-          <div className="dyn-face dyn-back">
-            {flipBack}
-          </div>
-        )}
-      </div>
+      <span className="dyn-card-index" aria-hidden="true">↗</span>
+      <span className="dyn-card-icon">{icon}</span>
+      <span className="dyn-card-copy">
+        <strong>{label}</strong>
+        {description ? <small>{description}</small> : null}
+      </span>
 
       <style>{`
         .dyn-card {
-          width: 195px;
-          height: 285px;
-          border-radius: 20px;
+          position: relative;
+          display: flex;
+          width: 180px;
+          min-height: 180px;
+          padding: 22px;
+          flex-direction: column;
+          border: 1px solid var(--color-card-border);
+          border-radius: 3px;
+          background: var(--color-card-bg);
           color: var(--color-text-primary);
           text-decoration: none;
-          border: 1px solid var(--color-card-border);
-          cursor: pointer;
-          flex-shrink: 0;
-          display: block;
-          position: relative;
+          transition: transform 280ms var(--ease-silk), border-color 280ms ease, box-shadow 280ms ease;
         }
-        .dyn-card:not(.is-flipped):hover {
-          transform: scale(1.04) rotate(-1deg);
-          transition: transform 0.2s ease-in-out;
+        .dyn-card:hover {
+          border-color: var(--color-accent);
+          box-shadow: var(--shadow-soft);
+          transform: translateY(-5px);
         }
-        .dyn-inner {
+        .dyn-card-index {
+          position: absolute;
+          top: 16px;
+          right: 18px;
+          color: var(--color-text-secondary);
+          font-size: 12px;
+        }
+        .dyn-card-icon {
+          display: inline-flex;
+          width: 38px;
+          height: 38px;
+          margin-bottom: auto;
+          align-items: center;
+          color: var(--color-accent);
+        }
+        .dyn-card-icon svg {
           width: 100%;
           height: 100%;
-          position: relative;
-          transform-style: preserve-3d;
-          transition: transform 0.65s cubic-bezier(.4,0,.2,1);
-          border-radius: 20px;
         }
-        .dyn-inner-flipped {
-          transform: rotateY(180deg);
+        .dyn-card-copy {
+          display: grid;
+          gap: 3px;
+          margin-top: 30px;
         }
-        .dyn-face {
-          position: absolute;
-          inset: 0;
-          border-radius: 20px;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: var(--color-card-bg);
-          overflow: hidden;
+        .dyn-card-copy strong {
+          font-family: var(--font-display);
+          font-size: 19px;
+          font-weight: 500;
+          line-height: 1.1;
         }
-        .dyn-back {
-          transform: rotateY(180deg);
-          padding: 12px;
-          gap: 8px;
-        }
-        .flip-close {
-          position: absolute;
-          top: 10px;
-          right: 12px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          font-size: 14px;
+        .dyn-card-copy small {
           color: var(--color-text-secondary);
-          line-height: 1;
-          padding: 2px 4px;
-          z-index: 2;
-        }
-        .flip-close:hover { color: var(--color-text-primary); }
-        .icon {
-          height: 30%;
-          position: absolute;
-          transition: 0.25s ease-in-out;
-          z-index: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--color-text-primary);
-        }
-        .icon svg {
-          width: 60px;
-          height: 60px;
-        }
-        .textBox {
-          opacity: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 15px;
-          transition: 0.25s ease-in-out;
-          z-index: 2;
-        }
-        .textBox > .text { font-weight: bold; }
-        .textBox > .head { font-size: 20px; margin: 0; }
-        .textBox > span { font-size: 12px; color: var(--color-text-secondary); }
-        .dyn-card:not(.dyn-card-flip):hover .textBox { opacity: 1; }
-        .dyn-card:not(.dyn-card-flip):hover .icon {
-          height: 65%;
-          filter: blur(7px);
-          animation: dyn-float 3s ease-in-out infinite;
-        }
-        .dyn-card-flip:not(.is-flipped):hover .textBox { opacity: 1; }
-        .dyn-card-flip.is-flipped .icon {
-          animation: none;
-          filter: none;
-        }
-        @keyframes dyn-float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+          font-size: 10px;
+          line-height: 1.5;
         }
       `}</style>
-    </Tag>
+    </a>
   )
 }

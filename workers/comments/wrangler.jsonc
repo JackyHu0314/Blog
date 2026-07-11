@@ -9,6 +9,7 @@
   },
   "vars": {
     "ALLOWED_ORIGINS": "https://www.jackyhu.top,https://jackyhu.top,http://localhost:5173,http://127.0.0.1:5173",
+    "TURNSTILE_ALLOWED_HOSTNAMES": "www.jackyhu.top,jackyhu.top,localhost,127.0.0.1",
     "COMMENTS_REQUIRE_APPROVAL": "true"
   },
   "d1_databases": [

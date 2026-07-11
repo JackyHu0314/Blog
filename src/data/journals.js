@@ -2,7 +2,13 @@ export const journals = [
   {
     id: 'lost-and-rebuild',
     cover: '/lost.jpg',
-    song: { title: 'lost', cover: '/lost.jpg', vibe: '迷失在某个时刻的安静里，像是在黑暗中摸索却不急着找到出口。' },
+    song: {
+      title: 'lost',
+      artist: 'Hayd',
+      cover: '/lost.jpg',
+      vibe: '迷失在某个时刻的安静里，像是在黑暗中摸索却不急着找到出口。',
+      bilibiliUrl: 'https://www.bilibili.com/video/BV1Fg4y1m7zZ',
+    },
     title: { zh: '迷失与重构', en: 'Lost and Rebuilding' },
     excerpt: {
       zh: '开学这些日子发生了太多的事情，心态发生了极其巨大的变化。借这篇文字，梳理一下最近在技术进阶上的弯路，以及自己那过载的 CPU。',
@@ -43,7 +49,13 @@ export const journals = [
   {
     id: 'emotional-overload',
     cover: "/don't go don't leave.jpg",
-    song: { title: "don't go don't leave", cover: "/don't go don't leave.jpg", vibe: '情绪涌上来又退去，像是在挽留什么却说不出口，只剩下一种钝钝的不舍。' },
+    song: {
+      title: "don't go don't leave",
+      artist: 'Hayd',
+      cover: "/don't go don't leave.jpg",
+      vibe: '情绪涌上来又退去，像是在挽留什么却说不出口，只剩下一种钝钝的不舍。',
+      bilibiliUrl: 'https://search.bilibili.com/all?keyword=Hayd%20don%27t%20go%20don%27t%20leave',
+    },
     title: { zh: '情绪过载', en: 'Emotional Overload' },
     excerpt: {
       zh: '多巴胺的潮汐退去之后，留下的不是放松，而是更加深重的低谷与焦虑。一次关于系统硬重启、关于内啡肽、关于重新开始的自我对话。',
@@ -76,7 +88,13 @@ export const journals = [
   {
     id: 'untitled-2025',
     cover: '/love me.png',
-    song: { title: 'love me', cover: '/love me.png', vibe: '温柔却带着一点点疼，像翻出旧照片时心里那种说不清楚的滋味。' },
+    song: {
+      title: 'love me',
+      artist: 'Hayd',
+      cover: '/love me.png',
+      vibe: '温柔却带着一点点疼，像翻出旧照片时心里那种说不清楚的滋味。',
+      bilibiliUrl: 'https://www.bilibili.com/video/BV1zphwzPEbj/',
+    },
     title: { zh: '无题', en: 'Untitled' },
     excerpt: {
       zh: '后来我渐渐明白，物理上的距离，有时候是为了成全心理上的保全。夜深的时候，周遭是很静的，只剩下键盘被敲击时发出的、单调却踏实的声音。',

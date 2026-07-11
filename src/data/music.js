@@ -1,0 +1,238 @@
+export const musicTracks = [
+  {
+    id: 'love-me',
+    featured: true,
+    title: { zh: 'love me', en: 'love me' },
+    artist: { zh: 'Hayd', en: 'Hayd' },
+    cover: '/love me.png',
+    note: {
+      zh: '温柔却带着一点点疼，像翻出旧照片时心里那种说不清楚的滋味。',
+      en: 'Tender, with a faint ache—like finding an old photograph and feeling something that refuses to be named.',
+    },
+    status: { zh: '本期主打', en: 'Featured record' },
+    linkLabel: { zh: '在 B 站观看官方视频', en: 'Watch the official video on Bilibili' },
+    bilibiliUrl: 'https://www.bilibili.com/video/BV1zphwzPEbj/',
+  },
+  {
+    id: 'lost',
+    featured: false,
+    title: { zh: 'lost', en: 'lost' },
+    artist: { zh: 'Hayd', en: 'Hayd' },
+    cover: '/lost.jpg',
+    note: {
+      zh: '迷失在某个时刻的安静里，像是在黑暗中摸索却不急着找到出口。',
+      en: 'Quietly lost in a moment, feeling through the dark without needing to find the exit just yet.',
+    },
+    status: { zh: '夜间循环', en: 'After-hours loop' },
+    linkLabel: { zh: '在 B 站播放这首歌', en: 'Play this track on Bilibili' },
+    bilibiliUrl: 'https://www.bilibili.com/video/BV1Fg4y1m7zZ',
+  },
+  {
+    id: 'dont-go-dont-leave',
+    featured: false,
+    title: { zh: "don't go don't leave", en: "don't go don't leave" },
+    artist: { zh: 'Hayd', en: 'Hayd' },
+    cover: "/don't go don't leave.jpg",
+    note: {
+      zh: '情绪涌上来又退去，像是在挽留什么却说不出口，只剩下一种钝钝的不舍。',
+      en: 'A feeling rises and recedes, like wanting someone to stay but finding no words—only a quiet reluctance to let go.',
+    },
+    status: { zh: '慢速播放', en: 'Slow rotation' },
+    linkLabel: { zh: '在 B 站搜索这首歌', en: 'Find this track on Bilibili' },
+    bilibiliUrl: 'https://search.bilibili.com/all?keyword=Hayd%20don%27t%20go%20don%27t%20leave',
+  },
+  {
+    id: 'before-i-found-her',
+    featured: false,
+    title: { zh: 'before i found her', en: 'before i found her' },
+    artist: { zh: 'Hayd', en: 'Hayd' },
+    cover: '/before i found her.jpg',
+    note: {
+      zh: '最近在听，听感暂时留白；等它在生活里多停留一阵，再回来补上这张卡片。',
+      en: 'A recent listen, intentionally left open for now. The note can wait until the song has spent more time in everyday life.',
+    },
+    status: { zh: '最近在听 · 待补记', en: 'Recent listen · Note pending' },
+    linkLabel: { zh: '在 B 站搜索这首歌', en: 'Find this track on Bilibili' },
+    bilibiliUrl: 'https://search.bilibili.com/all?keyword=Hayd%20before%20i%20found%20her',
+  },
+]
+
+export const musicPlaylists = [
+  {
+    id: 'favorite-songs',
+    index: '00',
+    featured: true,
+    title: { zh: '私藏声场', en: 'Private Frequencies' },
+    sourceTitle: 'Favorite Songs',
+    classification: { zh: '总收藏 · 华语流行为核心', en: 'Main archive · C-pop at its core' },
+    description: {
+      zh: '跨年代的主收藏，以华语流行为中心，也保留近期不断加入的新声音。它承担“全部喜欢”，其他歌单再按质感拆分。',
+      en: 'The broad library: rooted in Chinese pop across eras, with newer discoveries continuously joining it. The other playlists narrow this collection by texture.',
+    },
+    trackCount: 225,
+    duration: { zh: '15 小时 52 分钟', en: '15 hr 52 min' },
+    snapshot: '2026.07',
+    appleMusicUrl: 'https://music.apple.com/cn/playlist/favorite-songs/pl.u-GPUojBeKNz',
+    previewTracks: [
+      {
+        title: '遗书',
+        artist: '蔡健雅',
+        url: 'https://music.apple.com/cn/album/%E9%81%97%E4%B9%A6/1444733536?i=1444733611',
+      },
+      {
+        title: '沦陷',
+        artist: 'JuggShots',
+        url: 'https://music.apple.com/cn/album/%E6%B2%A6%E9%99%B7/1752454687?i=1752454688',
+      },
+      {
+        title: '紧急联络人',
+        artist: 'Gareth.T',
+        url: 'https://music.apple.com/cn/album/%E7%B4%A7%E6%80%A5%E8%81%94%E7%BB%9C%E4%BA%BA/1718045810?i=1718045819',
+      },
+      {
+        title: '玻璃',
+        artist: 'Gareth.T',
+        url: 'https://music.apple.com/cn/album/%E7%8E%BB%E7%92%83/6769327003?i=6769327013',
+      },
+      {
+        title: '失眠',
+        artist: 'Suki刘舒妤',
+        url: 'https://music.apple.com/cn/album/%E5%A4%B1%E7%9C%A0/1493944192?i=1493944197',
+      },
+      {
+        title: '特别关系',
+        artist: '都智文 & 永彬Ryan.B',
+        url: 'https://music.apple.com/cn/album/%E7%89%B9%E5%88%AB%E5%85%B3%E7%B3%BB/1637582730?i=1637582735',
+      },
+    ],
+  },
+  {
+    id: 'hayd-style',
+    index: '01',
+    featured: false,
+    title: { zh: '未寄出的低语', en: 'Unsent Whispers' },
+    sourceTitle: 'Hayd Style',
+    classification: { zh: '卧室流行 · 轻柔唱作', en: 'Bedroom pop · Soft singer-songwriter' },
+    description: {
+      zh: '以 Hayd、Anson Seabra 一类克制的创作歌手为轴：轻编曲、近距离人声，再延伸到 lo-fi 抒情与少量日系氛围。',
+      en: 'Understated singer-songwriters such as Hayd and Anson Seabra, extending from light arrangements and close vocals into lo-fi ballads and Japanese ambience.',
+    },
+    trackCount: 28,
+    duration: { zh: '1 小时 28 分钟', en: '1 hr 28 min' },
+    snapshot: '2026.07',
+    appleMusicUrl: 'https://music.apple.com/cn/playlist/hayd-style/pl.u-MDAWkg6TA5YXKbl',
+    previewTracks: [
+      {
+        title: 'Down Low',
+        artist: 'Sara Kays',
+        url: 'https://music.apple.com/cn/album/down-low/1465245976?i=1465245977',
+      },
+      {
+        title: 'Trying My Best',
+        artist: 'Anson Seabra',
+        url: 'https://music.apple.com/cn/album/trying-my-best/1537025131?i=1537025132',
+      },
+      {
+        title: 'Airplane Mode',
+        artist: 'Hayd',
+        url: 'https://music.apple.com/cn/album/airplane-mode/1583125945?i=1583126077',
+      },
+      {
+        title: 'Love',
+        artist: 'Finding Hope',
+        url: 'https://music.apple.com/cn/album/love/1701059686?i=1701059687',
+      },
+      {
+        title: '24/7, 365',
+        artist: 'elijah woods',
+        url: 'https://music.apple.com/cn/album/24-7-365/1877125006?i=1877125447',
+      },
+    ],
+  },
+  {
+    id: 'quiet-with-u',
+    index: '02',
+    featured: false,
+    title: { zh: '无人的深夜', en: 'The Empty Hours' },
+    sourceTitle: 'Quiet with U',
+    classification: { zh: '安静陪伴 · Lo-fi / ambient', en: 'Quiet company · Lo-fi / ambient' },
+    description: {
+      zh: '更接近场景而不是单一曲风：慢拍、朦胧质地与大量留白，偶尔穿过新古典、灵魂乐和 alternative R&B。',
+      en: 'A setting rather than a single genre: slow tempos, hazy textures, and generous space, with traces of neoclassical, soul, and alternative R&B.',
+    },
+    trackCount: 61,
+    duration: { zh: '3 小时 14 分钟', en: '3 hr 14 min' },
+    snapshot: '2026.07',
+    appleMusicUrl: 'https://music.apple.com/cn/playlist/quiet-with-u/pl.u-XkD0vBLt2p7WK0b',
+    previewTracks: [
+      {
+        title: 'Beanie',
+        artist: 'Chezile',
+        url: 'https://music.apple.com/cn/album/beanie/1739505980?i=1739505989',
+      },
+      {
+        title: 'green to blue',
+        artist: 'daniel.mp3',
+        url: 'https://music.apple.com/cn/album/green-to-blue/1630098076?i=1630098087',
+      },
+      {
+        title: 'Dark',
+        artist: 'Mixed Matches',
+        url: 'https://music.apple.com/cn/album/dark/1488547959?i=1488547960',
+      },
+      {
+        title: 'Stay Alive',
+        artist: 'José González',
+        url: 'https://music.apple.com/cn/album/stay-alive/1440848321?i=1440848538',
+      },
+      {
+        title: 'Let Go',
+        artist: 'Beau Young Prince',
+        url: 'https://music.apple.com/cn/album/let-go/1445949265?i=1445949437',
+      },
+    ],
+  },
+  {
+    id: 'alternative-rnb',
+    index: '03',
+    featured: false,
+    title: { zh: '霓虹余温', en: 'Neon Afterglow' },
+    sourceTitle: 'Alternative RnB',
+    classification: { zh: '夜间流行 · R&B-adjacent', en: 'Night pop · R&B-adjacent' },
+    description: {
+      zh: '以 SZA、Bren Joy 和 Joji 一线的 R&B 为核心，也混入流行与 emo rap；共同点是低频、律动和贴近耳边的人声。',
+      en: 'R&B led by SZA, Bren Joy, and Joji, with pop and emo rap at the edges—held together by low end, rhythm, and close-up vocals.',
+    },
+    trackCount: 20,
+    duration: { zh: '1 小时 9 分钟', en: '1 hr 9 min' },
+    snapshot: '2026.07',
+    appleMusicUrl: 'https://music.apple.com/cn/playlist/alternative-rnb/pl.u-yZyVE3rtdM56r4A',
+    previewTracks: [
+      {
+        title: 'Is There Someone Else?',
+        artist: 'Abel Tesfaye',
+        url: 'https://music.apple.com/cn/album/is-there-someone-else/1618519111?i=1618519684',
+      },
+      {
+        title: 'Fiji Fine',
+        artist: 'Bren Joy',
+        url: 'https://music.apple.com/cn/album/fiji-fine/1557468383?i=1557468386',
+      },
+      {
+        title: 'What Do I Do',
+        artist: 'SZA',
+        url: 'https://music.apple.com/cn/album/what-do-i-do/1786643044?i=1786643046',
+      },
+      {
+        title: 'Open Arms (feat. Travis Scott)',
+        artist: 'SZA',
+        url: 'https://music.apple.com/cn/album/open-arms-feat-travis-scott/1658650093?i=1658650800',
+      },
+      {
+        title: 'Snooze',
+        artist: 'SZA',
+        url: 'https://music.apple.com/cn/album/snooze/1657869377?i=1657869492',
+      },
+    ],
+  },
+]

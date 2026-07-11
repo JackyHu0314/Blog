@@ -12,12 +12,6 @@ const statusColors = {
   '已完成': { bg: 'rgba(59,130,246,0.12)', fg: '#1d4ed8', border: '#1d4ed8' },
   '规划中': { bg: 'rgba(245,158,11,0.12)', fg: '#b45309', border: '#b45309' },
 }
-const statusColorsDark = {
-  '进行中': { bg: 'rgba(34,197,94,0.18)', fg: '#4ade80', border: '#4ade80' },
-  '已完成': { bg: 'rgba(59,130,246,0.18)', fg: '#60a5fa', border: '#60a5fa' },
-  '规划中': { bg: 'rgba(245,158,11,0.18)', fg: '#fbbf24', border: '#fbbf24' },
-}
-
 export default function Research() {
   const { t, tr } = useLanguage()
 
@@ -29,7 +23,6 @@ export default function Research() {
       <div className="rcard-list">
         {research.map((item, i) => {
           const sc = statusColors[item.status] || statusColors['规划中']
-          const scd = statusColorsDark[item.status] || statusColorsDark['规划中']
           return (
             <div key={item.id} className="rcard">
               <div className="rcard-text">

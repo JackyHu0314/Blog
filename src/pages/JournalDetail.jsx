@@ -86,7 +86,7 @@ export default function JournalDetail() {
 
           <div className="article-body">{renderBody(bodyText)}</div>
 
-          <CommentSection articleId={journal.id} />
+          <CommentSection articleId={'journal:' + journal.id} />
         </article>
 
         <TableOfContents body={bodyText} />

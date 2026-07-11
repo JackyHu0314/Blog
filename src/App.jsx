@@ -6,14 +6,16 @@ import JournalDetail from './pages/JournalDetail'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Research from './pages/Research'
+import Music from './pages/Music'
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
       <Route element={<MainLayout />}>
+        <Route index element={<Landing />} />
         <Route path="/journal" element={<Journal />} />
         <Route path="/journal/:id" element={<JournalDetail />} />
+        <Route path="/music" element={<Music />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/research" element={<Research />} />

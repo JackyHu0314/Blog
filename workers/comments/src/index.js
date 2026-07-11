@@ -1,9 +1,11 @@
 const MAX_ARTICLE_ID_LENGTH = 80
 const MAX_NICKNAME_LENGTH = 30
-const MAX_EMAIL_LENGTH = 120
 const MAX_CONTENT_LENGTH = 500
+const MAX_REQUEST_BODY_BYTES = 16 * 1024
 const RATE_LIMIT_WINDOW_SECONDS = 60
 const RATE_LIMIT_MAX_COMMENTS = 3
+const SITEVERIFY_TIMEOUT_MS = 5000
+const TURNSTILE_ACTION = 'comment'
 
 const DEFAULT_ALLOWED_ORIGINS = [
   'https://www.jackyhu.top',
@@ -12,9 +14,20 @@ const DEFAULT_ALLOWED_ORIGINS = [
   'http://127.0.0.1:5173',
 ]
 
+const DEFAULT_TURNSTILE_ALLOWED_HOSTNAMES = [
+  'www.jackyhu.top',
+  'jackyhu.top',
+  'localhost',
+  '127.0.0.1',
+]
+
 export default {
   async fetch(request, env) {
     const corsHeaders = getCorsHeaders(request, env)
+
+    if (request.method === 'POST' && !isRequestOriginAllowed(request, env)) {
+      return json({ error: 'origin_not_allowed' }, 403, corsHeaders)
+    }
 
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders })
@@ -24,7 +37,7 @@ export default {
       const url = new URL(request.url)
 
       if (url.pathname === '/health' && request.method === 'GET') {
-        return json({ ok: true }, 200, corsHeaders)
+        return await healthCheck(env, corsHeaders)
       }
 
       if (url.pathname === '/comments' && request.method === 'GET') {
@@ -65,6 +78,36 @@ export default {
   },
 }
 
+async function healthCheck(env, corsHeaders) {
+  const checks = {
+    database: Boolean(env.DB?.prepare),
+    turnstile: env.DISABLE_TURNSTILE === 'true' || Boolean(env.TURNSTILE_SECRET_KEY),
+    turnstileHostnames: env.DISABLE_TURNSTILE === 'true' || parseAllowedHostnames(env.TURNSTILE_ALLOWED_HOSTNAMES).length > 0,
+    ipHashSalt: Boolean(env.IP_HASH_SALT),
+    admin: env.COMMENTS_REQUIRE_APPROVAL === 'false' || Boolean(env.ADMIN_TOKEN),
+  }
+
+  if (checks.database) {
+    try {
+      await env.DB.prepare(`
+        SELECT id, article_id, nickname, content, status, ip_hash, user_agent, created_at, updated_at
+        FROM comments
+        LIMIT 1
+      `).first()
+      checks.database = true
+    } catch (error) {
+      checks.database = false
+      console.error(JSON.stringify({
+        message: 'comments_health_db_error',
+        error: error instanceof Error ? error.message : String(error),
+      }))
+    }
+  }
+
+  const ok = Object.values(checks).every(Boolean)
+  return json({ ok, checks }, ok ? 200 : 503, corsHeaders)
+}
+
 async function listComments(url, env, corsHeaders) {
   const articleId = normalizeArticleId(url.searchParams.get('articleId'))
 
@@ -84,10 +127,15 @@ async function listComments(url, env, corsHeaders) {
 }
 
 async function createComment(request, env, corsHeaders) {
-  const body = await readJson(request)
+  const bodyResult = await readJson(request)
+
+  if (!bodyResult.ok) {
+    return json({ error: bodyResult.error }, bodyResult.status, corsHeaders)
+  }
+
+  const body = bodyResult.value
   const articleId = normalizeArticleId(body.articleId)
   const nickname = normalizeText(body.nickname, MAX_NICKNAME_LENGTH)
-  const email = normalizeText(body.email ?? '', MAX_EMAIL_LENGTH).toLowerCase()
   const content = normalizeText(body.content, MAX_CONTENT_LENGTH)
   const turnstileToken = normalizeText(body.turnstileToken, 2048)
 
@@ -99,6 +147,10 @@ async function createComment(request, env, corsHeaders) {
     return json({ error: 'content_too_short' }, 400, corsHeaders)
   }
 
+  if (!env.IP_HASH_SALT) {
+    return json({ error: 'service_unavailable' }, 503, corsHeaders)
+  }
+
   if (env.DISABLE_TURNSTILE !== 'true') {
     const turnstileResult = await verifyTurnstile(turnstileToken, request, env)
     if (!turnstileResult.success) {
@@ -106,25 +158,42 @@ async function createComment(request, env, corsHeaders) {
     }
   }
 
-  const ipHash = await hashValue(getClientIp(request), env.IP_HASH_SALT || env.TURNSTILE_SECRET_KEY || 'local-dev')
-  const limited = await isRateLimited(env, ipHash)
-
-  if (limited) {
-    return json({ error: 'rate_limited' }, 429, corsHeaders)
-  }
-
+  const ipHash = await hashValue(getClientIp(request), env.IP_HASH_SALT)
   const id = crypto.randomUUID()
   const now = new Date().toISOString()
+  const rateLimitSince = new Date(Date.now() - RATE_LIMIT_WINDOW_SECONDS * 1000).toISOString()
   const status = env.COMMENTS_REQUIRE_APPROVAL === 'false' ? 'approved' : 'pending'
-  const emailHash = email ? await hashValue(email, env.IP_HASH_SALT || env.TURNSTILE_SECRET_KEY || 'local-dev') : null
   const userAgent = normalizeText(request.headers.get('User-Agent') ?? '', 200)
 
-  await env.DB.prepare(`
+  const insertResult = await env.DB.prepare(`
     INSERT INTO comments (
-      id, article_id, nickname, email_hash, content, status, ip_hash, user_agent, created_at, updated_at
+      id, article_id, nickname, content, status, ip_hash, user_agent, created_at, updated_at
     )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).bind(id, articleId, nickname, emailHash, content, status, ipHash, userAgent, now, now).run()
+    SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?
+    WHERE ? = '' OR (
+      SELECT COUNT(*)
+      FROM comments
+      WHERE ip_hash = ? AND created_at >= ?
+    ) < ?
+  `).bind(
+    id,
+    articleId,
+    nickname,
+    content,
+    status,
+    ipHash,
+    userAgent,
+    now,
+    now,
+    ipHash,
+    ipHash,
+    rateLimitSince,
+    RATE_LIMIT_MAX_COMMENTS,
+  ).run()
+
+  if (Number(insertResult.meta?.changes ?? 0) === 0) {
+    return json({ error: 'rate_limited' }, 429, corsHeaders)
+  }
 
   const comment = status === 'approved'
     ? { id, articleId, nickname, content, createdAt: now }
@@ -221,31 +290,38 @@ async function verifyTurnstile(token, request, env) {
     formData.append('remoteip', clientIp)
   }
 
-  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    body: formData,
-  })
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), SITEVERIFY_TIMEOUT_MS)
 
-  if (!response.ok) {
+  try {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+      signal: controller.signal,
+    })
+
+    if (!response.ok) {
+      return { success: false }
+    }
+
+    const result = await response.json()
+    const hostname = normalizeHostname(result.hostname)
+    const allowedHostnames = parseAllowedHostnames(env.TURNSTILE_ALLOWED_HOSTNAMES)
+
+    return {
+      ...result,
+      success: Boolean(
+        result.success
+        && result.action === TURNSTILE_ACTION
+        && hostname
+        && allowedHostnames.includes(hostname)
+      ),
+    }
+  } catch {
     return { success: false }
+  } finally {
+    clearTimeout(timeoutId)
   }
-
-  return await response.json()
-}
-
-async function isRateLimited(env, ipHash) {
-  if (!ipHash) {
-    return false
-  }
-
-  const since = new Date(Date.now() - RATE_LIMIT_WINDOW_SECONDS * 1000).toISOString()
-  const row = await env.DB.prepare(`
-    SELECT COUNT(*) AS count
-    FROM comments
-    WHERE ip_hash = ? AND created_at >= ?
-  `).bind(ipHash, since).first()
-
-  return Number(row?.count ?? 0) >= RATE_LIMIT_MAX_COMMENTS
 }
 
 async function requireAdmin(request, env) {
@@ -284,10 +360,56 @@ async function readJson(request) {
   const contentType = request.headers.get('Content-Type') ?? ''
 
   if (!contentType.includes('application/json')) {
-    return {}
+    return { ok: false, status: 400, error: 'invalid_payload' }
   }
 
-  return await request.json()
+  const declaredLength = Number(request.headers.get('Content-Length'))
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_REQUEST_BODY_BYTES) {
+    return { ok: false, status: 413, error: 'payload_too_large' }
+  }
+
+  if (!request.body) {
+    return { ok: false, status: 400, error: 'invalid_json' }
+  }
+
+  const reader = request.body.getReader()
+  const chunks = []
+  let totalBytes = 0
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+
+    totalBytes += value.byteLength
+    if (totalBytes > MAX_REQUEST_BODY_BYTES) {
+      await reader.cancel()
+      return { ok: false, status: 413, error: 'payload_too_large' }
+    }
+
+    chunks.push(value)
+  }
+
+  const bytes = new Uint8Array(totalBytes)
+  let offset = 0
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset)
+    offset += chunk.byteLength
+  }
+
+  try {
+    const value = JSON.parse(new TextDecoder().decode(bytes))
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      return { ok: false, status: 400, error: 'invalid_payload' }
+    }
+    return { ok: true, value }
+  } catch {
+    return { ok: false, status: 400, error: 'invalid_json' }
+  }
+}
+
+function isRequestOriginAllowed(request, env) {
+  const origin = request.headers.get('Origin')
+  return !origin || parseAllowedOrigins(env.ALLOWED_ORIGINS).includes(origin)
 }
 
 function getCorsHeaders(request, env) {
@@ -314,6 +436,19 @@ function parseAllowedOrigins(value) {
     .filter(Boolean)
 
   return configured.length > 0 ? configured : DEFAULT_ALLOWED_ORIGINS
+}
+
+function parseAllowedHostnames(value) {
+  const configured = String(value ?? '')
+    .split(',')
+    .map(normalizeHostname)
+    .filter(Boolean)
+
+  return configured.length > 0 ? configured : DEFAULT_TURNSTILE_ALLOWED_HOSTNAMES
+}
+
+function normalizeHostname(value) {
+  return String(value ?? '').trim().toLowerCase().replace(/\.$/, '')
 }
 
 function json(data, status, headers) {

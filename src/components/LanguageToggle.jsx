@@ -6,7 +6,7 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggleLang}
-      className="px-2.5 py-1.5 rounded-lg text-sm font-semibold text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors"
+      className="language-toggle"
       title={t('lang.label')}
       aria-label={t('lang.label')}
     >

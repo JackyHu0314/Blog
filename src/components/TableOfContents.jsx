@@ -1,12 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 
 export default function TableOfContents({ body }) {
-  const [headings, setHeadings] = useState([])
   const [active, setActive] = useState('')
   const observerRef = useRef(null)
 
-  useEffect(() => {
-    if (!body) return
+  const headings = useMemo(() => {
+    if (!body) return []
     const lines = body.split('\n')
     const found = []
     lines.forEach(line => {
@@ -14,7 +13,7 @@ export default function TableOfContents({ body }) {
       else if (line.startsWith('### ')) found.push({ level: 3, text: line.slice(4).trim() })
       else if (line.startsWith('#### ')) found.push({ level: 4, text: line.slice(5).trim() })
     })
-    setHeadings(found)
+    return found
   }, [body])
 
   useEffect(() => {

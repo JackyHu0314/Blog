@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { t } = useLanguage()
 
   const links = [
@@ -19,13 +20,22 @@ export default function Navbar() {
 
   const navClass = ({ isActive }) => 'nav-link' + (isActive ? ' is-active' : '')
 
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 20)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
   return (
-    <nav className="site-nav" aria-label="Primary navigation">
+    <nav
+      className={`site-nav${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`}
+      aria-label="Primary navigation"
+    >
       <div className="nav-inner">
         <NavLink to="/" className="brand-link" aria-label="Jacky's Field Notes home" onClick={() => setOpen(false)}>
-          <span className="brand-name brand-name-full">Jacky’s Field Notes</span>
-          <span className="brand-name brand-name-short">J / Notes</span>
-          <span className="brand-meta">XJTU · EST. 2025</span>
+          <span className="brand-name">Jacky Hu</span>
+          <span className="brand-dot" aria-hidden="true" />
         </NavLink>
 
         <div className="nav-desktop">
@@ -62,6 +72,9 @@ export default function Navbar() {
               {t(key)}
             </NavLink>
           ))}
+          <div className="mobile-panel-actions">
+            <LanguageToggle />
+          </div>
         </div>
       )}
     </nav>

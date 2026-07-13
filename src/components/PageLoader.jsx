@@ -56,10 +56,10 @@ export default function PageLoader() {
         style={{
           height: '100%',
           width: `${progress}%`,
-          background: 'linear-gradient(90deg, transparent, var(--color-accent) 35%, #e7b267)',
+          background: 'linear-gradient(90deg, transparent, var(--color-accent) 55%, var(--color-text-primary))',
           transition: progress === 100 ? 'width 0.15s ease, opacity 0.3s ease' : 'width 0.1s linear',
           opacity: progress === 100 ? 0 : 1,
-          boxShadow: '0 0 12px color-mix(in srgb, var(--color-accent) 70%, transparent)',
+          boxShadow: '0 0 10px color-mix(in srgb, var(--color-accent) 45%, transparent)',
         }}
       />
     </div>

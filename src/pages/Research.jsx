@@ -6,142 +6,65 @@ const covers = [
   '/590403149_18545600473063026_1403862960695336920_n.jpg',
   '/604069869_18545600443063026_695876252491310582_n.jpg',
   '/604444198_18545600464063026_3288618535915015183_n.jpg',
+  '/476439329_1169534361842817_5942725893209506020_n.jpg',
 ]
 
-const statusColors = {
-  '进行中': { bg: 'rgba(34,197,94,0.12)', fg: '#15803d', border: '#15803d' },
-  '已完成': { bg: 'rgba(59,130,246,0.12)', fg: '#1d4ed8', border: '#1d4ed8' },
-  '规划中': { bg: 'rgba(245,158,11,0.12)', fg: '#b45309', border: '#b45309' },
-}
-
-const statusOrder = {
-  '规划中': 0,
-  '进行中': 1,
-  '已完成': 2,
-}
+const statusOrder = { '进行中': 0, '规划中': 1, '已完成': 2 }
 
 export default function Research() {
-  const { t, tr } = useLanguage()
-  const orderedResearch = [...research].sort(
-    (a, b) => (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1)
+  const { t, tr, lang } = useLanguage()
+  const ordered = [...research].sort(
+    (a, b) => (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1),
   )
+  const tags = [...new Set(research.flatMap((item) => item.tags))]
 
   return (
-    <div>
-      <h1 className="text-3xl md:text-4xl font-bold mb-2">{t('research.title')}</h1>
-      <p className="text-text-secondary mb-8">{t('research.subtitle')}</p>
+    <article className="listing-page research-page">
+      <header className="page-intro animate-block">
+        <p className="page-kicker">Research map · In progress</p>
+        <h1 className="page-title">{t('research.title')}</h1>
+        <p className="page-description">{t('research.subtitle')}</p>
+      </header>
 
-      <div className="rcard-list">
-        {orderedResearch.map((item, i) => {
-          const sc = statusColors[item.status] || statusColors['规划中']
-          return (
-            <div key={item.id} className="rcard">
-              <div className="rcard-text">
-                <div className="rcard-meta">
-                  <span className="rcard-status" style={{
-                    background: sc.bg, color: sc.fg, border: `1.5px solid ${sc.border}`
-                  }}>
-                    {t(`research.status.${item.status}`)}
-                  </span>
+      <div className="listing-layout animate-block animate-block--delay">
+        <main className="post-card-list">
+          {ordered.map((item, index) => (
+            <article className="post-card research-card" key={item.id}>
+              <div className="post-card__copy">
+                <div className="meta-line">
+                  <span className={`research-status status-${item.status}`}>{t(`research.status.${item.status}`)}</span>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                 </div>
-                <h2 className="rcard-title">{tr(item.title)}</h2>
-                <p className="rcard-abstract">{tr(item.abstract)}</p>
-                <div className="rcard-tags">
-                  {item.tags.map(tag => (
-                    <span key={tag} className="rcard-tag">{tag}</span>
-                  ))}
+                <h2>{tr(item.title)}</h2>
+                <p>{tr(item.abstract)}</p>
+                <div className="tag-list">
+                  {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
               </div>
-              <div className="rcard-img-wrap">
-                <img src={covers[i % covers.length]} alt="" className="rcard-img" loading="lazy" />
+              <div className="post-card__cover" aria-hidden="true">
+                <img src={covers[index]} alt="" loading="lazy" />
               </div>
+            </article>
+          ))}
+        </main>
+
+        <aside className="listing-sidebar">
+          <section>
+            <h2>{lang === 'zh' ? '学习路径' : 'Study path'}</h2>
+            <ol className="sidebar-steps">
+              <li><span>01</span>{lang === 'zh' ? '深度学习与生成基础' : 'Deep learning and generation'}</li>
+              <li><span>02</span>{lang === 'zh' ? '3D 表示与重建' : '3D representations and reconstruction'}</li>
+              <li><span>03</span>{lang === 'zh' ? '3D 生成模型' : '3D generative models'}</li>
+            </ol>
+          </section>
+          <section>
+            <h2>{lang === 'zh' ? '主题' : 'Topics'}</h2>
+            <div className="sidebar-tags">
+              {tags.map((tag) => <span key={tag}>{tag}</span>)}
             </div>
-          )
-        })}
+          </section>
+        </aside>
       </div>
-
-      <style>{`
-        .rcard-list { display: flex; flex-direction: column; gap: 20px; }
-        .rcard {
-          display: flex;
-          align-items: stretch;
-          gap: 24px;
-          padding: 24px;
-          border-radius: 16px;
-          border: 1px solid var(--color-card-border);
-          background: var(--color-card-bg);
-          overflow: hidden;
-          transition: transform 0.25s var(--ease-silk), box-shadow 0.25s var(--ease-silk), border-color 0.25s var(--ease-silk);
-        }
-        .rcard:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-          border-color: var(--color-text-secondary);
-        }
-        .dark .rcard:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-        .rcard-text {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          min-width: 0;
-        }
-        .rcard-meta { display: flex; align-items: center; gap: 10px; }
-        .rcard-status {
-          padding: 2px 10px;
-          border-radius: 999px;
-          font-size: 12px;
-          font-weight: 700;
-          white-space: nowrap;
-        }
-        .rcard-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: #000000;
-          line-height: 1.35;
-          margin: 0;
-        }
-        .dark .rcard-title { color: #e8eaed; }
-        .rcard-abstract {
-          font-size: 14px;
-          color: var(--color-text-secondary);
-          line-height: 1.7;
-          margin: 0;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .rcard-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-        .rcard-tag {
-          padding: 2px 10px;
-          border-radius: 999px;
-          font-size: 11px;
-          font-weight: 700;
-          background: var(--color-bg-secondary);
-          color: var(--color-text-secondary);
-          border: 1px solid var(--color-card-border);
-        }
-        .rcard-img-wrap {
-          flex-shrink: 0;
-          width: 160px;
-          height: 120px;
-          border-radius: 10px;
-          overflow: hidden;
-          align-self: center;
-        }
-        .rcard-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.4s var(--ease-silk);
-        }
-        .rcard:hover .rcard-img { transform: scale(1.06); }
-        @media (max-width: 560px) {
-          .rcard { flex-direction: column; }
-          .rcard-img-wrap { width: 100%; height: 160px; }
-        }
-      `}</style>
-    </div>
+    </article>
   )
 }

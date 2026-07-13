@@ -1,5 +1,15 @@
 export const research = [
   {
+    id: 5,
+    title: { zh: '3D Generation 与生成模型', en: '3D Generation and Generative Models' },
+    abstract: {
+      zh: '当前围绕 3D Generation 及相关生成方向做系统学习：从 3D 数据的来源与表示出发，理解优化式生成、前馈重建和原生 3D 潜空间生成等路线，以及每一代方法试图解决的核心瓶颈。',
+      en: 'Currently studying 3D generation through the origins and representations of 3D data, spanning optimization-based generation, feed-forward reconstruction, and native 3D latent generation, with an emphasis on the bottleneck each approach addresses.',
+    },
+    status: '进行中',
+    tags: ['3D Generation', 'Generative Models', '3D Representation', 'Diffusion Models'],
+  },
+  {
     id: 3,
     title: { zh: '多模态智能与 Agent 方向', en: 'Multimodal Intelligence and Agents' },
     abstract: {

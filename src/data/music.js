@@ -62,7 +62,7 @@ export const musicPlaylists = [
     id: 'favorite-songs',
     index: '00',
     featured: true,
-    title: { zh: '私藏声场', en: 'Private Frequencies' },
+    title: { zh: 'saved songs', en: 'saved songs' },
     sourceTitle: 'Favorite Songs',
     classification: { zh: '总收藏 · 华语流行为核心', en: 'Main archive · C-pop at its core' },
     description: {
@@ -110,7 +110,7 @@ export const musicPlaylists = [
     id: 'hayd-style',
     index: '01',
     featured: false,
-    title: { zh: '未寄出的低语', en: 'Unsent Whispers' },
+    title: { zh: 'soft-spoken', en: 'soft-spoken' },
     sourceTitle: 'Hayd Style',
     classification: { zh: '卧室流行 · 轻柔唱作', en: 'Bedroom pop · Soft singer-songwriter' },
     description: {
@@ -153,7 +153,7 @@ export const musicPlaylists = [
     id: 'quiet-with-u',
     index: '02',
     featured: false,
-    title: { zh: '无人的深夜', en: 'The Empty Hours' },
+    title: { zh: 'quiet hours', en: 'quiet hours' },
     sourceTitle: 'Quiet with U',
     classification: { zh: '安静陪伴 · Lo-fi / ambient', en: 'Quiet company · Lo-fi / ambient' },
     description: {
@@ -196,7 +196,7 @@ export const musicPlaylists = [
     id: 'alternative-rnb',
     index: '03',
     featured: false,
-    title: { zh: '霓虹余温', en: 'Neon Afterglow' },
+    title: { zh: 'after dark', en: 'after dark' },
     sourceTitle: 'Alternative RnB',
     classification: { zh: '夜间流行 · R&B-adjacent', en: 'Night pop · R&B-adjacent' },
     description: {

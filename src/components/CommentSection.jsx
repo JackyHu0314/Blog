@@ -726,16 +726,16 @@ export default function CommentSection({ articleId }) {
 
       <style>{`
         .comment-section {
-          --comment-accent: #ad483a;
+          --comment-accent: #557b8d;
           --comment-accent-soft: color-mix(in srgb, var(--comment-accent) 10%, transparent);
           --comment-rule: var(--color-card-border);
-          margin-top: clamp(56px, 9vw, 88px);
-          padding-top: clamp(30px, 5vw, 48px);
+          margin-top: 3.5rem;
+          padding-top: 2rem;
           color: var(--color-text-primary);
           border-top: 1px solid var(--comment-rule);
         }
         .dark .comment-section {
-          --comment-accent: #dc715f;
+          --comment-accent: #b0e2ed;
           --comment-accent-soft: color-mix(in srgb, var(--comment-accent) 12%, transparent);
         }
         .comment-section__header {
@@ -756,11 +756,11 @@ export default function CommentSection({ articleId }) {
         }
         .comment-section__title {
           margin: 0;
-          font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', 'Songti SC', serif;
-          font-size: clamp(30px, 4.6vw, 44px);
-          font-weight: 500;
-          letter-spacing: -0.035em;
-          line-height: 1;
+          font-family: var(--font-sans);
+          font-size: 1.5rem;
+          font-weight: 600;
+          letter-spacing: -0.015em;
+          line-height: 1.35;
         }
         .comment-section__introduction {
           max-width: 560px;
@@ -889,7 +889,7 @@ export default function CommentSection({ articleId }) {
           background: var(--comment-accent-soft);
           border: 1px solid color-mix(in srgb, var(--comment-accent) 35%, var(--comment-rule));
           border-radius: 50%;
-          font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', 'Songti SC', serif;
+          font-family: var(--font-sans);
           font-size: 17px;
           font-weight: 650;
         }
@@ -928,12 +928,11 @@ export default function CommentSection({ articleId }) {
           white-space: pre-wrap;
         }
         .comment-form {
-          margin-top: clamp(46px, 8vw, 72px);
-          padding: clamp(22px, 4.5vw, 38px);
-          background: color-mix(in srgb, var(--color-card-bg) 94%, var(--comment-accent) 6%);
+          margin-top: 3rem;
+          padding: 1.25rem;
+          background: var(--color-card-bg);
           border: 1px solid var(--comment-rule);
-          border-left: 3px solid var(--comment-accent);
-          border-radius: 4px;
+          border-radius: 0.75rem;
         }
         .comment-form__heading {
           display: grid;
@@ -946,10 +945,10 @@ export default function CommentSection({ articleId }) {
         }
         .comment-form__heading h3 {
           margin: 0;
-          font-family: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', 'Songti SC', serif;
-          font-size: clamp(25px, 3.5vw, 34px);
-          font-weight: 500;
-          letter-spacing: -0.025em;
+          font-family: var(--font-sans);
+          font-size: 1.25rem;
+          font-weight: 600;
+          letter-spacing: -0.015em;
         }
         .comment-form__heading > p {
           margin: 0;
@@ -987,7 +986,7 @@ export default function CommentSection({ articleId }) {
           color: var(--color-text-primary);
           background: var(--color-card-bg);
           border: 1px solid var(--comment-rule);
-          border-radius: 3px;
+          border-radius: 0.375rem;
           font: inherit;
           font-size: 13px;
           line-height: 1.5;
@@ -1100,10 +1099,10 @@ export default function CommentSection({ articleId }) {
           min-height: 44px;
           margin-top: 5px;
           padding: 0 15px;
-          color: #fffaf2;
+          color: var(--color-bg-primary);
           background: var(--comment-accent);
           border: 1px solid var(--comment-accent);
-          border-radius: 3px;
+          border-radius: 0.375rem;
           font: inherit;
           font-size: 11px;
           font-weight: 720;

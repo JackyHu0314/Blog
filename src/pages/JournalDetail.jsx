@@ -6,191 +6,122 @@ import TableOfContents from '../components/TableOfContents'
 import CommentSection from '../components/CommentSection'
 import HaydRecommend from '../components/HaydRecommend'
 
-function parseBody(md) {
-  if (!md) return { blocks: [], headings: [] }
-  const lines = md.split('\n')
+function parseBody(markdown) {
+  if (!markdown) return { blocks: [], headings: [] }
+
+  const lines = markdown.split('\n')
   const blocks = []
   const headings = []
   let headingIndex = 0
-  let i = 0
-  while (i < lines.length) {
-    const line = lines[i]
-    if (line.trim() === '') { i++; continue }
+  let index = 0
+
+  while (index < lines.length) {
+    const line = lines[index]
+    if (line.trim() === '') { index += 1; continue }
+
     if (line.startsWith('## ')) {
-      const text = line.slice(3).trim()
-      const block = { type: 'h2', text, id: `heading-${headingIndex++}` }
+      const block = { type: 'h2', text: line.slice(3).trim(), id: `heading-${headingIndex++}` }
       blocks.push(block)
-      headings.push({ id: block.id, level: 2, text })
-      i++
+      headings.push({ id: block.id, level: 2, text: block.text })
+      index += 1
       continue
     }
     if (line.startsWith('### ')) {
-      const text = line.slice(4).trim()
-      const block = { type: 'h3', text, id: `heading-${headingIndex++}` }
+      const block = { type: 'h3', text: line.slice(4).trim(), id: `heading-${headingIndex++}` }
       blocks.push(block)
-      headings.push({ id: block.id, level: 3, text })
-      i++
+      headings.push({ id: block.id, level: 3, text: block.text })
+      index += 1
       continue
     }
     if (line.startsWith('#### ')) {
-      const text = line.slice(5).trim()
-      const block = { type: 'h4', text, id: `heading-${headingIndex++}` }
+      const block = { type: 'h4', text: line.slice(5).trim(), id: `heading-${headingIndex++}` }
       blocks.push(block)
-      headings.push({ id: block.id, level: 4, text })
-      i++
+      headings.push({ id: block.id, level: 4, text: block.text })
+      index += 1
       continue
     }
-    if (line.startsWith('> ')) { blocks.push({ type: 'quote', text: line.slice(2) }); i++; continue }
+    if (line.startsWith('> ')) {
+      blocks.push({ type: 'quote', text: line.slice(2) })
+      index += 1
+      continue
+    }
     if (line.startsWith('- ')) {
       const items = []
-      while (i < lines.length && lines[i].startsWith('- ')) { items.push(lines[i].slice(2)); i++ }
-      blocks.push({ type: 'ul', items }); continue
+      while (index < lines.length && lines[index].startsWith('- ')) {
+        items.push(lines[index].slice(2))
+        index += 1
+      }
+      blocks.push({ type: 'ul', items })
+      continue
     }
-    blocks.push({ type: 'p', text: line }); i++
+
+    blocks.push({ type: 'p', text: line })
+    index += 1
   }
+
   return { blocks, headings }
 }
 
-function renderBody(blocks) {
-  const renderInline = (text) =>
-    text.split(/(\*\*[^*]+\*\*)/g).map((part, k) => {
-      if (part.startsWith('**') && part.endsWith('**'))
-        return <strong key={k}>{part.slice(2, -2)}</strong>
-      return <span key={k}>{part}</span>
-    })
-
-  return blocks.map((b, idx) => {
-    switch (b.type) {
-      case 'h2': return <h2 key={b.id} id={b.id} className="article-h2">{renderInline(b.text)}</h2>
-      case 'h3': return <h3 key={b.id} id={b.id} className="article-h3">{renderInline(b.text)}</h3>
-      case 'h4': return <h4 key={b.id} id={b.id} className="article-h4">{renderInline(b.text)}</h4>
-      case 'quote': return <blockquote key={idx} className="article-quote">{renderInline(b.text)}</blockquote>
-      case 'ul':
-        return (
-          <ul key={idx} className="article-ul">
-            {b.items.map((it, k) => <li key={k}>{renderInline(it)}</li>)}
-          </ul>
-        )
-      default: return <p key={idx} className="article-p">{renderInline(b.text)}</p>
+function renderInline(text) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>
     }
+    return <span key={index}>{part}</span>
+  })
+}
+
+function renderBody(blocks) {
+  return blocks.map((block, index) => {
+    if (block.type === 'h2') return <h2 key={block.id} id={block.id} className="article-h2">{renderInline(block.text)}</h2>
+    if (block.type === 'h3') return <h3 key={block.id} id={block.id} className="article-h3">{renderInline(block.text)}</h3>
+    if (block.type === 'h4') return <h4 key={block.id} id={block.id} className="article-h4">{renderInline(block.text)}</h4>
+    if (block.type === 'quote') return <blockquote key={index} className="article-quote">{renderInline(block.text)}</blockquote>
+    if (block.type === 'ul') {
+      return <ul key={index} className="article-ul">{block.items.map((item, itemIndex) => <li key={itemIndex}>{renderInline(item)}</li>)}</ul>
+    }
+    return <p key={index} className="article-p">{renderInline(block.text)}</p>
   })
 }
 
 export default function JournalDetail() {
   const { id } = useParams()
-  const { tr } = useLanguage()
-  const journal = journals.find((j) => String(j.id) === String(id))
+  const { tr, lang } = useLanguage()
+  const journal = journals.find((item) => String(item.id) === String(id))
 
   if (!journal) {
     return (
-      <div>
-        <p className="text-text-secondary mb-6">没有找到这篇文章。</p>
-        <Link to="/journal" className="underline text-text-primary">← 返回随记</Link>
+      <div className="empty-page">
+        <p>{lang === 'zh' ? '没有找到这篇文章。' : 'This note could not be found.'}</p>
+        <Link className="inline-link" to="/journal">← {lang === 'zh' ? '返回随记' : 'Back to notes'}</Link>
       </div>
     )
   }
 
-  const bodyText = tr(journal.body)
-  const parsedBody = parseBody(bodyText)
+  const parsed = parseBody(tr(journal.body))
 
   return (
-    <div className="detail-root">
+    <article className="detail-page animate-block">
       <div className="detail-layout">
-        <article className="detail-article">
-          <Link to="/journal" className="article-back">← 返回随记</Link>
+        <main className="detail-article">
+          <Link to="/journal" className="article-back">← {lang === 'zh' ? '返回随记' : 'Back to notes'}</Link>
 
-          <header className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
+          <header className="article-header">
+            <div className="article-meta">
               <CategoryBadge label={journal.category} />
-              <span className="text-xs text-text-secondary tracking-wider">{journal.date}</span>
+              <time dateTime={journal.date}>{journal.date}</time>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary leading-tight">
-              {tr(journal.title)}
-            </h1>
+            <h1>{tr(journal.title)}</h1>
+            <p>{tr(journal.excerpt)}</p>
           </header>
 
           <HaydRecommend song={journal.song} />
+          <div className="article-body">{renderBody(parsed.blocks)}</div>
+          <CommentSection articleId={`journal:${journal.id}`} />
+        </main>
 
-          <div className="article-body">{renderBody(parsedBody.blocks)}</div>
-
-          <CommentSection articleId={'journal:' + journal.id} />
-        </article>
-
-        <TableOfContents headings={parsedBody.headings} />
+        <TableOfContents headings={parsed.headings} />
       </div>
-
-      <style>{`
-        .detail-root { }
-        .detail-cover-banner {
-          width: 100%;
-          height: 220px;
-          background-size: cover;
-          background-position: center;
-          border-radius: 12px;
-          position: relative;
-          overflow: hidden;
-          margin-bottom: 32px;
-        }
-        .detail-cover-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom, transparent 30%, var(--color-page-bg) 100%);
-        }
-        .detail-layout {
-          display: flex;
-          gap: 40px;
-          align-items: flex-start;
-        }
-        .detail-article {
-          flex: 1;
-          min-width: 0;
-          max-width: 760px;
-        }
-        .article-back {
-          display: inline-block;
-          margin-bottom: 28px;
-          font-size: 13px;
-          color: var(--color-text-secondary);
-          text-decoration: none;
-          transition: color 0.2s var(--ease-silk);
-        }
-        .article-back:hover { color: var(--color-text-primary); }
-        .article-body {
-          color: #000000;
-          font-size: 16px;
-          line-height: 1.9;
-        }
-        .dark .article-body { color: #e8eaed; }
-        .article-body .article-p { color: #000000; margin: 0 0 1.2em 0; }
-        .dark .article-body .article-p { color: #e8eaed; }
-        .article-body .article-h2 {
-          color: #000000;
-          font-size: 22px;
-          font-weight: 700;
-          margin: 2em 0 0.8em 0;
-          padding-bottom: 0.3em;
-          border-bottom: 1px solid var(--color-card-border);
-        }
-        .dark .article-body .article-h2 { color: #e8eaed; }
-        .article-body .article-h3 { color: #000000; font-size: 18px; font-weight: 700; margin: 1.6em 0 0.6em 0; }
-        .dark .article-body .article-h3 { color: #e8eaed; }
-        .article-body .article-h4 { color: #000000; font-size: 16px; font-weight: 700; margin: 1.4em 0 0.5em 0; }
-        .dark .article-body .article-h4 { color: #e8eaed; }
-        .article-body .article-quote {
-          margin: 1.4em 0;
-          padding: 0.4em 1em;
-          border-left: 3px solid #000000;
-          color: #000000;
-          font-style: italic;
-          opacity: 0.75;
-        }
-        .dark .article-body .article-quote { border-left-color: #e8eaed; color: #e8eaed; }
-        .article-body .article-ul { list-style: disc; padding-left: 1.4em; margin: 0 0 1.2em 0; color: #000000; }
-        .dark .article-body .article-ul { color: #e8eaed; }
-        .article-body .article-ul li { margin: 0.25em 0; }
-        .article-body strong { color: #000000; }
-        .dark .article-body strong { color: #e8eaed; }
-      `}</style>
-    </div>
+    </article>
   )
 }

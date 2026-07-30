@@ -1,11 +1,12 @@
 export const dict = {
   zh: {
     nav: {
-      journal: '随记',
-      music: '音乐',
-      about: '关于我',
-      projects: '项目',
-      research: '研究兴趣',
+      journal: 'Journal',
+      music: 'Music',
+      about: 'About',
+      projects: 'Projects',
+      research: 'Research',
+      links: 'Links',
       search: '搜索',
     },
     theme: {
@@ -36,27 +37,27 @@ export const dict = {
       },
     },
     about: {
-      title: '关于我',
-      tagline: '学生 / 开发者',
-      intro: '简介',
+      title: 'About',
+      tagline: 'Mathematics / Video Generation',
+      intro: 'Profile',
       introBody:
-        '你好，我是 Jacky，西安交通大学在读生，主修数学。平时关注深度学习、Web 开发和一些基础设施方向，也在持续学习如何把想法做成作品。',
-      interests: '兴趣',
-      interestsBody: '编程、深度学习、建网站、阅读、摄影、打球、听音乐。喜欢有趣的人，也喜欢把零散想法慢慢做成可以运行的东西。',
-      skills: '技术栈',
+        '西安交通大学数学学院本科生。目前关注 Video Generation。',
+      interests: 'Interests',
+      interestsBody: '编程、深度学习、阅读、摄影、篮球和音乐。',
+      skills: 'Stack',
       contact: '联系',
       contactHint: '欢迎交流。',
       wechatHint: '扫一扫，加我微信',
       qqHint: '扫一扫，加我 QQ',
     },
     projects: {
-      title: '项目',
-      subtitle: '我的个人项目与作品',
+      title: 'Projects',
+      subtitle: 'Selected work.',
       viewDetail: '查看详情 →',
     },
     research: {
-      title: '研究兴趣',
-      subtitle: '当前学习主线与后续关注方向',
+      title: 'Research',
+      subtitle: 'Video Generation.',
       status: {
         进行中: '进行中',
         已完成: '已完成',
@@ -70,7 +71,8 @@ export const dict = {
       music: 'Music',
       about: 'About',
       projects: 'Projects',
-      research: 'Interests',
+      research: 'Research',
+      links: 'Links',
       search: 'Search',
     },
     theme: {
@@ -102,13 +104,13 @@ export const dict = {
     },
     about: {
       title: 'About Me',
-      tagline: 'Student / Developer',
-      intro: 'Intro',
+      tagline: 'Mathematics / Video Generation',
+      intro: 'Profile',
       introBody:
-        "Hi, I'm Jacky, a Mathematics student at Xi'an Jiaotong University. I focus on deep learning, web development, and infrastructure, and I keep learning how to turn ideas into real projects.",
+        "Mathematics student at Xi'an Jiaotong University. Currently focused on video generation.",
       interests: 'Interests',
-      interestsBody: 'Programming, deep learning, web development, reading, photography, basketball, and music. I enjoy turning scattered ideas into things that actually run.',
-      skills: 'Tech Stack',
+      interestsBody: 'Programming, deep learning, reading, photography, basketball, and music.',
+      skills: 'Stack',
       contact: 'Contact',
       contactHint: 'Always open to conversation.',
       wechatHint: 'Scan to add me on WeChat',
@@ -116,12 +118,12 @@ export const dict = {
     },
     projects: {
       title: 'Projects',
-      subtitle: 'Personal projects and work',
+      subtitle: 'Selected work.',
       viewDetail: 'View details →',
     },
     research: {
-      title: 'Research Interests',
-      subtitle: 'Current learning track and future directions',
+      title: 'Research',
+      subtitle: 'Video Generation.',
       status: {
         进行中: 'In progress',
         已完成: 'Completed',

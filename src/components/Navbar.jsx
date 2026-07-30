@@ -15,6 +15,7 @@ export default function Navbar() {
     { to: '/music', key: 'nav.music' },
     { to: '/projects', key: 'nav.projects' },
     { to: '/research', key: 'nav.research' },
+    { to: '/links', key: 'nav.links' },
     { to: '/about', key: 'nav.about' },
   ]
 

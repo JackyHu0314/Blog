@@ -6,11 +6,11 @@ import { useTheme } from '../context/ThemeContext'
 let turnstileScriptPromise
 
 const copy = {
-  eyebrow: { zh: '读者来信', en: 'Reader correspondence' },
-  title: { zh: '评论', en: 'Comments' },
+  eyebrow: { zh: 'Comments', en: 'Comments' },
+  title: { zh: '留言', en: 'Comments' },
   introduction: {
-    zh: '欢迎留下你的想法。认真写下的每一句话，都会被认真读到。',
-    en: 'You are welcome to leave a thought. Every considered note will be read with care.',
+    zh: '欢迎留言。',
+    en: 'Leave a comment.',
   },
   countLoading: { zh: '读取中', en: 'Loading' },
   countUnavailable: { zh: '— 条', en: '— comments' },
@@ -21,10 +21,10 @@ const copy = {
     en: 'This may be a brief network interruption. Please try again.',
   },
   retry: { zh: '重新加载', en: 'Try again' },
-  emptyTitle: { zh: '这里还很安静', en: 'It is quiet here' },
+  emptyTitle: { zh: '暂无留言', en: 'No comments yet' },
   emptyBody: {
-    zh: '成为第一个留下想法的人。',
-    en: 'Be the first person to leave a thought.',
+    zh: '可以从这里开始。',
+    en: 'Start here.',
   },
   formTitle: { zh: '写下回应', en: 'Write a response' },
   formIntroduction: {
@@ -627,7 +627,7 @@ export default function CommentSection({ articleId }) {
           >
             <div className="comment-form__heading">
               <div>
-                <p className="comment-form__index">02 / RESPONSE</p>
+                <p className="comment-form__index">Response</p>
                 <h3 id={formTitleId}>{tr(copy.formTitle)}</h3>
               </div>
               <p>{tr(copy.formIntroduction)}</p>

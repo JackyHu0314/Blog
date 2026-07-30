@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     <article className="listing-page">
       <header className="page-intro animate-block">
-        <p className="page-kicker">Build log · Selected work</p>
+        <p className="page-kicker">Selected Work</p>
         <h1 className="page-title">{t('projects.title')}</h1>
         <p className="page-description">{t('projects.subtitle')}</p>
       </header>
@@ -44,17 +44,17 @@ export default function Projects() {
 
         <aside className="listing-sidebar">
           <section>
-            <h2>{lang === 'zh' ? '关于这些项目' : 'About the work'}</h2>
-            <p>{lang === 'zh' ? '大多是学习阶段的完整小项目：先跑通，再复盘，最后留下可复现的代码。' : 'Mostly complete learning projects: make it work, review it, and leave reproducible code behind.'}</p>
+            <h2>Notes</h2>
+            <p>{lang === 'zh' ? '完整代码均发布于 GitHub。' : 'Full source code is available on GitHub.'}</p>
           </section>
           <section>
-            <h2>{lang === 'zh' ? '技术标签' : 'Technologies'}</h2>
+            <h2>Stack</h2>
             <div className="sidebar-tags">
               {tags.slice(0, 12).map((tag) => <span key={tag}>{tag}</span>)}
             </div>
           </section>
           <a className="sidebar-link-card" href="https://github.com/JackyHu0314" target="_blank" rel="noopener noreferrer">
-            <span>GitHub</span><strong>{lang === 'zh' ? '查看全部仓库' : 'All repositories'} ↗</strong>
+            <span>GitHub</span><strong>All repositories ↗</strong>
           </a>
         </aside>
       </div>

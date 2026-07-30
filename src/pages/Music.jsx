@@ -2,22 +2,22 @@ import { useLanguage } from '../context/LanguageContext'
 import { musicPlaylists, musicTracks } from '../data/music'
 
 const copy = {
-  archiveLabel: { zh: '私人听觉档案 · 001', en: 'Private listening archive · 001' },
-  title: { zh: '音乐空间', en: 'Listening Room' },
+  archiveLabel: { zh: 'Listening Room · 001', en: 'Listening Room · 001' },
+  title: { zh: 'Music', en: 'Music' },
   introduction: {
-    zh: '不做评分，也不急着给一首歌下结论。这里只留下最近反复播放的声音，以及它们经过生活时留下的一点痕迹。',
-    en: 'No ratings and no rush to reach a verdict—just the sounds on repeat and the traces they leave behind.',
+    zh: '最近在听。',
+    en: 'On repeat.',
   },
-  featured: { zh: '本期收录', en: 'Featured record' },
-  recent: { zh: '最近播放', en: 'Recent rotation' },
-  playlists: { zh: '四份歌单', en: 'Four playlists' },
+  featured: { zh: 'Featured', en: 'Featured' },
+  recent: { zh: 'On Repeat', en: 'On Repeat' },
+  playlists: { zh: 'Playlists', en: 'Playlists' },
   playlistsNote: {
-    zh: '分类不是严格的边界，更像四种不同的夜晚。名称与顺序会继续变化。',
-    en: 'Not strict genre boundaries, but four different kinds of night. Names and order may keep changing.',
+    zh: '四份 Apple Music 歌单。',
+    en: 'Four Apple Music playlists.',
   },
-  openPlaylist: { zh: '在 Apple Music 打开', en: 'Open in Apple Music' },
-  openTrack: { zh: '打开歌曲', en: 'Open track' },
-  tracks: { zh: '首', en: 'tracks' },
+  openPlaylist: { zh: 'Apple Music', en: 'Apple Music' },
+  openTrack: { zh: 'Open track', en: 'Open track' },
+  tracks: { zh: 'tracks', en: 'tracks' },
 }
 
 function ExternalArrow() {
@@ -65,8 +65,8 @@ export default function Music() {
           </article>
 
           <aside className="listening-aside" aria-label="Listening note">
-            <p className="listening-aside__label">Current mood</p>
-            <p className="listening-aside__quote">“quiet enough to hear what stayed.”</p>
+            <p className="listening-aside__label">Now Playing</p>
+            <p className="listening-aside__quote">Hayd / Apple Music</p>
             <dl>
               <div><dt>Tracks</dt><dd>{musicTracks.length}</dd></div>
               <div><dt>Playlists</dt><dd>{musicPlaylists.length}</dd></div>
@@ -81,7 +81,7 @@ export default function Music() {
             <p className="section-index">02—04</p>
             <h2 id="recent-tracks-title">{tr(copy.recent)}</h2>
           </div>
-          <p>{tr({ zh: '几首还没有听腻的歌。', en: 'A few songs that have not worn out yet.' })}</p>
+          <p>{tr({ zh: '最近常听。', en: 'Recently played.' })}</p>
         </div>
 
         <div className="track-list">

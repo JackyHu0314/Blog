@@ -7,6 +7,8 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Research from './pages/Research'
 import Music from './pages/Music'
+import Links from './pages/Links'
+import Policy from './pages/Policy'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/research" element={<Research />} />
+        <Route path="/links" element={<Links />} />
+        <Route path="/policy" element={<Policy />} />
       </Route>
     </Routes>
   )

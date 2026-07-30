@@ -21,12 +21,12 @@ export default function Journal() {
   return (
     <article className="listing-page journal-page">
       <header className="page-intro animate-block">
-        <p className="page-kicker">Archive · Writing</p>
-        <h1 className="page-title">{lang === 'zh' ? '随记' : 'Field Notes'}</h1>
+        <p className="page-kicker">Journal · Archive</p>
+        <h1 className="page-title">Journal</h1>
         <p className="page-description">
           {lang === 'zh'
-            ? '写技术的弯路，也写情绪的潮汐。每一篇都是留给未来的一份现场记录。'
-            : 'Technical detours and emotional tides—each entry a field record for a future self.'}
+            ? '技术、生活与近况。'
+            : 'Notes on tech and life.'}
         </p>
       </header>
 
@@ -58,7 +58,7 @@ export default function Journal() {
                       </div>
                       <h2>{tr(journal.title)}</h2>
                       <p>{tr(journal.excerpt)}</p>
-                      <span className="journal-read-more">{lang === 'zh' ? '继续阅读' : 'Read note'} →</span>
+                      <span className="journal-read-more">Read →</span>
                     </div>
                     {journal.cover ? (
                       <div className="journal-entry-cover" aria-hidden="true">
@@ -76,14 +76,14 @@ export default function Journal() {
 
         <aside className="listing-sidebar journal-sidebar">
           <section>
-            <h2>{lang === 'zh' ? '归档' : 'Archive'}</h2>
+            <h2>Archive</h2>
             <div className="archive-summary">
-              <div><span>{lang === 'zh' ? '文章' : 'Notes'}</span><strong>{journals.length}</strong></div>
-              <div><span>{lang === 'zh' ? '年份' : 'Years'}</span><strong>{years.length}</strong></div>
+              <div><span>Notes</span><strong>{journals.length}</strong></div>
+              <div><span>Years</span><strong>{years.length}</strong></div>
             </div>
           </section>
           <section>
-            <h2>{lang === 'zh' ? '分类' : 'Collections'}</h2>
+            <h2>Collections</h2>
             <ul className="collection-list">
               {categories.slice(1).map((category) => {
                 const count = journals.filter((journal) => journal.category === category).length
@@ -91,7 +91,6 @@ export default function Journal() {
               })}
             </ul>
           </section>
-          <p className="sidebar-quiet-note">{lang === 'zh' ? '有些文字只是为了记住当时的天气。' : 'Some notes exist only to remember the weather of that moment.'}</p>
         </aside>
       </div>
     </article>

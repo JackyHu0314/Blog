@@ -28,7 +28,7 @@ export default function About() {
             <h2>Jacky Hu</h2>
             <p>{lang === 'zh' ? '西安交通大学数学学院 · 本科在读' : 'School of Mathematics, Xi’an Jiaotong University'}</p>
           </div>
-          <span className="status-dot"><i aria-hidden="true" />{lang === 'zh' ? '保持好奇' : 'Curious'}</span>
+          <span className="status-dot"><i aria-hidden="true" />Video Generation</span>
         </section>
 
         <section className="about-section" aria-labelledby="about-intro-title">
@@ -42,7 +42,6 @@ export default function About() {
           <h2 id="about-interest-title">{t('about.interests')}</h2>
           <div>
             <p>{t('about.interestsBody')}</p>
-            <p>{lang === 'zh' ? '目前的学习主线是 3D Generation 与相关生成模型，也会补充强化学习、多模态等基础；博客则是我练习表达、设计与工程能力的一块长期试验田。' : 'My current focus is 3D generation and related generative models, supported by continued study in reinforcement learning and multimodal methods. This blog is a long-running experiment in writing, design, and engineering.'}</p>
           </div>
         </section>
 
@@ -54,7 +53,7 @@ export default function About() {
         </section>
 
         <section className="about-section" aria-labelledby="about-links-title">
-          <h2 id="about-links-title">{lang === 'zh' ? '找到我' : 'Elsewhere'}</h2>
+          <h2 id="about-links-title">Elsewhere</h2>
           <div className="contact-links">
             {links.map((link) => (
               <a key={link.label} href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}>
@@ -67,15 +66,15 @@ export default function About() {
         </section>
 
         <section className="about-section" aria-labelledby="about-scan-title">
-          <h2 id="about-scan-title">{lang === 'zh' ? '即时联系' : 'Direct contact'}</h2>
+          <h2 id="about-scan-title">Contact</h2>
           <div className="qr-links">
             <figure className="qr-contact-card qr-contact-card--wechat">
               <img src="/wechat-qr.jpg" alt={t('about.wechatHint')} loading="lazy" />
-              <figcaption><small>{lang === 'zh' ? '直接扫码' : 'Scan directly'}</small><strong>WeChat</strong><span>{t('about.wechatHint')}</span></figcaption>
+              <figcaption><small>Scan</small><strong>WeChat</strong><span>{t('about.wechatHint')}</span></figcaption>
             </figure>
             <figure className="qr-contact-card qr-contact-card--qq">
               <img src="/qq-qr.jpg" alt={t('about.qqHint')} loading="lazy" />
-              <figcaption><small>{lang === 'zh' ? '直接扫码' : 'Scan directly'}</small><strong>QQ</strong><span>{t('about.qqHint')}</span></figcaption>
+              <figcaption><small>Scan</small><strong>QQ</strong><span>{t('about.qqHint')}</span></figcaption>
             </figure>
           </div>
         </section>

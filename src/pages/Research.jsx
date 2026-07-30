@@ -12,7 +12,7 @@ const covers = [
 const statusOrder = { '进行中': 0, '规划中': 1, '已完成': 2 }
 
 export default function Research() {
-  const { t, tr, lang } = useLanguage()
+  const { t, tr } = useLanguage()
   const ordered = [...research].sort(
     (a, b) => (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1),
   )
@@ -21,7 +21,7 @@ export default function Research() {
   return (
     <article className="listing-page research-page">
       <header className="page-intro animate-block">
-        <p className="page-kicker">Research map · In progress</p>
+        <p className="page-kicker">Current Focus</p>
         <h1 className="page-title">{t('research.title')}</h1>
         <p className="page-description">{t('research.subtitle')}</p>
       </header>
@@ -50,15 +50,15 @@ export default function Research() {
 
         <aside className="listing-sidebar">
           <section>
-            <h2>{lang === 'zh' ? '学习路径' : 'Study path'}</h2>
+            <h2>Path</h2>
             <ol className="sidebar-steps">
-              <li><span>01</span>{lang === 'zh' ? '深度学习与生成基础' : 'Deep learning and generation'}</li>
-              <li><span>02</span>{lang === 'zh' ? '3D 表示与重建' : '3D representations and reconstruction'}</li>
-              <li><span>03</span>{lang === 'zh' ? '3D 生成模型' : '3D generative models'}</li>
+              <li><span>01</span>Deep Learning</li>
+              <li><span>02</span>Generative Models</li>
+              <li><span>03</span>Video Generation</li>
             </ol>
           </section>
           <section>
-            <h2>{lang === 'zh' ? '主题' : 'Topics'}</h2>
+            <h2>Topics</h2>
             <div className="sidebar-tags">
               {tags.map((tag) => <span key={tag}>{tag}</span>)}
             </div>

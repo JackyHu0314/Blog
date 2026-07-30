@@ -3,8 +3,8 @@ export const projects = [
     id: 4,
     title: { zh: '图像风格迁移', en: 'Neural Style Transfer' },
     description: {
-      zh: '基于 PyTorch 和预训练 VGG19 的图像风格迁移项目，实现经典优化式 Neural Style Transfer，并扩展到 Fast Style Transfer。当前已完成内容 / 风格损失、Gram 矩阵和图像优化流程，能够输出指定风格的迁移结果。',
-      en: 'An image style-transfer project built with PyTorch and pretrained VGG19. It implements optimization-based Neural Style Transfer and extends to Fast Style Transfer, with content/style loss, Gram matrices, image optimization, and generated style-transfer outputs.',
+      zh: '使用 PyTorch 与 VGG19 实现 Neural Style Transfer，并扩展至 Fast Style Transfer。',
+      en: 'Neural Style Transfer and Fast Style Transfer implemented with PyTorch and VGG19.',
     },
     date: { zh: '2026 年 5 月', en: 'May 2026' },
     tags: ['Python', 'PyTorch', 'VGG19', 'Computer Vision', 'Style Transfer'],
@@ -14,8 +14,8 @@ export const projects = [
     id: 3,
     title: { zh: '中文外卖评论情感分析', en: 'Chinese Waimai Sentiment Analysis' },
     description: {
-      zh: '一个中文 NLP 迁移学习项目，使用 PyTorch + Hugging Face Transformers 加载中文 RoBERTa / BERT，为外卖评论训练正负情感分类模型。当前已包含训练、预测、测试集评估、错例导出和混合情绪分析，能形成完整的实验闭环。',
-      en: 'A Chinese NLP transfer-learning project using PyTorch and Hugging Face Transformers to fine-tune Chinese RoBERTa/BERT for waimai sentiment classification. It includes training, prediction, test-set evaluation, mistake export, mixed-sentiment analysis, and a complete experiment loop.',
+      zh: '使用 PyTorch 与中文 RoBERTa / BERT 完成外卖评论情感分类，包含训练、评估与错例分析。',
+      en: 'Chinese sentiment classification with PyTorch and RoBERTa/BERT, including training, evaluation, and error analysis.',
     },
     date: { zh: '2026 年 4 月', en: 'April 2026' },
     tags: ['Python', 'PyTorch', 'Transformers', 'RoBERTa', 'NLP'],
@@ -25,8 +25,8 @@ export const projects = [
     id: 2,
     title: { zh: 'MNIST CNN 手写数字识别', en: 'MNIST CNN Digit Recognition' },
     description: {
-      zh: '基于 PyTorch 实现的手写数字识别练习项目，使用轻量级 CNN 在 MNIST 数据集上完成 0-9 分类，并支持命令行预测本地图片。当前已跑通数据加载、预处理、训练、保存权重和推理流程，是后续视觉项目的基础练习。',
-      en: 'A PyTorch handwriting recognition project that trains a lightweight CNN on MNIST for 0-9 digit classification and supports command-line prediction for local images. It covers data loading, preprocessing, training, checkpoint saving, and inference as a foundation for later vision projects.',
+      zh: '使用 PyTorch 训练轻量 CNN 完成 MNIST 分类，并支持本地图片推理。',
+      en: 'A lightweight PyTorch CNN for MNIST classification and local-image inference.',
     },
     date: { zh: '2026 年 3 月', en: 'March 2026' },
     tags: ['Python', 'PyTorch', 'torchvision', 'CNN', 'MNIST'],
@@ -36,8 +36,8 @@ export const projects = [
     id: 1,
     title: { zh: '个人博客', en: 'Personal Blog' },
     description: {
-      zh: '这个博客本身也是我持续迭代的项目：基于 Vite + React 19 + Tailwind CSS v4 构建，支持中英双语、亮色 / 暗色主题、随记、项目、研究、音乐空间、站内搜索和自建评论区。',
-      en: 'This blog is an ongoing project built with Vite, React 19, and Tailwind CSS v4, with bilingual content, light/dark themes, journals, projects, research, a listening room, site search, and a self-hosted comment system.',
+      zh: '使用 React 19、Vite 与 Tailwind CSS 构建，包含双语、主题、搜索、音乐空间和自建评论区。',
+      en: 'Built with React 19, Vite, and Tailwind CSS, with bilingual content, themes, search, music, and a self-hosted comment system.',
     },
     date: { zh: '2026 年 3 月', en: 'March 2026' },
     tags: ['React 19', 'Vite 8', 'Tailwind CSS v4', 'React Router 7'],

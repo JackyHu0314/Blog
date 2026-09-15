@@ -18,13 +18,21 @@ export default function Policy() {
           <h2>Copyright</h2>
           <p>
             {lang === 'zh'
+              ? '本站原创程序代码与开发文档采用 MIT 协议。允许使用、修改、分发和商用，需保留版权声明及许可文本。文章与其他内容不属于 MIT 的授权范围。'
+              : 'Original source code and development documentation are licensed under MIT. Use, modification, distribution, and commercial use are permitted with the copyright and license notices retained. Articles and other content are outside its scope.'}
+          </p>
+          <a href="https://github.com/JackyHu0314/Blog/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
+            Code · MIT ↗
+          </a>
+          <p>
+            {lang === 'zh'
               ? '除特别说明外，本站原创文字采用 CC BY-NC-SA 4.0 许可。你可以在署名、附上原文链接、注明改动且仅限非商业用途的前提下转载或改编；改编内容须继续采用相同协议。'
               : 'Unless noted otherwise, original writing on this site is licensed under CC BY-NC-SA 4.0. You may share or adapt it with attribution, a source link, and an indication of changes for noncommercial purposes; adaptations must use the same license.'}
           </p>
           <p>
             {lang === 'zh'
-              ? '第三方图片、音乐、视频、商标与引用内容归各自权利人所有，不在上述许可范围内。'
-              : 'Third-party images, music, video, trademarks, and quoted material remain with their respective rights holders and are excluded from this license.'}
+              ? '第三方代码、图片、音乐、视频、字体、商标与引用内容遵循各自的许可或权利声明，不在上述许可范围内。'
+              : 'Third-party code, images, music, video, fonts, trademarks, and quoted material retain their own licenses or rights notices and are excluded from these licenses.'}
           </p>
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
             CC BY-NC-SA 4.0 ↗

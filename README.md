@@ -97,3 +97,9 @@ npm run build
 ```
 
 将 `dist/` 目录部署到任意静态托管平台（Cloudflare Pages、Nginx 等）。
+
+## 协议
+
+- 本项目原创程序代码及相关开发文档采用 [MIT License](./LICENSE)。允许使用、修改、分发和商用，需保留版权声明及许可文本。
+- 博客文章、随记与音乐文字（包括 `src/data/` 中的内容）采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)，不属于 MIT 的授权范围。
+- 第三方依赖、代码及图片、音乐、视频、字体等素材遵循各自的许可或权利声明，不因本仓库的 MIT 协议而重新授权。

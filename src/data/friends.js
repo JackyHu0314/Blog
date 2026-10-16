@@ -23,4 +23,10 @@ export const friends = [
     url: 'https://main.lhxzns.pages.dev/',
     avatar: 'https://main.lhxzns.pages.dev/head.jpg',
   },
+  {
+    name: "Qiumu's Blog",
+    description: 'named by Aaron and Zachary',
+    url: 'https://qiumu0o0.github.io/',
+    avatar: 'https://qiumu0o0.github.io/avatar.png',
+  },
 ]

@@ -1,6 +1,16 @@
 export const journals = [
   {
     id: 'life-as-a-digital-nomad',
+    cover: '/images/journal/someday.jpg',
+    image: {
+      src: '/images/journal/someday.jpg',
+      alt: {
+        zh: '海边的共享长桌旁，人们正使用笔记本电脑工作。',
+        en: 'People working on laptops at a shared table overlooking the sea.',
+      },
+      width: 1279,
+      height: 1702,
+    },
     title: { zh: '未来的某一天', en: 'Someday' },
     excerpt: {
       zh: "嗨，我亲爱的朋友，我想和你聊聊我真正向往的一种生活方式：做一名数字游民。",

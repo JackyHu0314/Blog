@@ -115,6 +115,19 @@ export default function JournalDetail() {
             <p>{tr(journal.excerpt)}</p>
           </header>
 
+          {journal.image ? (
+            <figure className="my-8">
+              <img
+                src={journal.image.src}
+                alt={tr(journal.image.alt)}
+                width={journal.image.width}
+                height={journal.image.height}
+                decoding="async"
+                className="block h-auto w-full rounded-xl"
+              />
+            </figure>
+          ) : null}
+
           <HaydRecommend song={journal.song} />
           <div className="article-body">{renderBody(parsed.blocks)}</div>
           <CommentSection articleId={`journal:${journal.id}`} />

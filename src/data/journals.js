@@ -1,27 +1,25 @@
 export const journals = [
   {
     id: 'life-as-a-digital-nomad',
-    title: { zh: '我向往的生活：数字游民', en: 'The Life I Want: A Digital Nomad' },
+    title: { zh: '未来的某一天', en: 'Someday' },
     excerpt: {
-      zh: '在不同的地方工作，在陌生的国家住上一阵。我向往能选择自己生活方式的自由，也愿意为它慢慢做准备。',
-      en: 'Working from different places and spending time in unfamiliar countries. A wish for the freedom to choose how I live, and a willingness to prepare for it.',
+      zh: "嗨，我亲爱的朋友，我想和你聊聊我真正向往的一种生活方式：做一名数字游民。",
+      en: "Hi, my dear friend. I want to talk about a lifestyle that I really dream of: being a digital nomad.",
     },
     category: '生活',
     date: '2026-10-25',
     body: {
-      zh: `我向往的一种生活方式，是做一名数字游民。
+      zh: `嗨，我亲爱的朋友，我想和你聊聊我真正向往的一种生活方式：做一名数字游民。想象一下，在海边的小咖啡馆里对着笔记本电脑工作，在一个陌生的国家待上几个月，每天醒来都身处不同的地方。你的生活再也不会被一座城市、一间办公室所局限。
+最吸引我的不只是旅行的自由，更是选择自己想要的生活方式的自由。我不希望我的人生全部内容就只是工作、付账单、等周末。我想多看看这个世界，结识不同的人，体验我从未经历过的事物。
+当然，这种生活并不总像看上去那样美好。你依旧需要有资金、相关技能，还有照顾好自己的能力。自由不代表不用承担任何责任，它意味着你要主动负责，为自己打造出你真正想要的生活。
+也许有朝一日，我会在异国他乡工作。`,
+      en: `Hi, my dear friend. I want to talk about a lifestyle that I really dream of: being a digital nomad. Imagine working on your laptop in a small café by the sea, spending a few months in a new country, and waking up every day in a different place. Your life is no longer limited to one city or one office.
 
-在海边的小咖啡馆里对着笔记本电脑工作，在一个陌生的国家住上几个月。白天做好手头的事，闲下来的时候去走走，慢慢熟悉那里的街道、食物和人。生活可以跟着自己的选择，换一个地方继续。
+What attracts me most is not just the freedom to travel. It’s the freedom to choose how I want to live. I don’t want my whole life to be about working, paying bills, and waiting for the weekend. I want to see more of the world, meet different people, and experience things I’ve never experienced before.
 
-吸引我的是旅行，也是选择生活方式的自由。我不希望人生的全部内容，只剩下工作、付账单和等待周末。我想多看看这个世界，结识不同的人，体验一些从未经历过的事情。
+Of course, this life isn’t always as beautiful as it looks. You still need money, skills, and the ability to take care of yourself. Freedom doesn’t mean having no responsibilities. It means taking responsibility for building a life that you truly want.
 
-当然，我知道这样的生活也有现实的一面。换一个地方，工作和账单依然在那里。我需要足够的资金、能支撑生活的技能，也需要照顾好自己、安排好时间的能力。
-
-自由意味着更多事情要自己决定，也要自己负责。什么时候工作，怎样维持收入，遇到困难时如何处理，都需要认真面对。我愿意为这样的生活做准备，让这个愿望慢慢有实现的可能。
-
-也许有朝一日，我会在异国他乡工作。希望那时，工作之外也有足够的时间，去认识自己生活的地方，过一段真正属于自己的日子。
-
-文字缘起：@琴弦未锈🎸 关于数字游民的分享。这也是我理想中的生活。`,
+Maybe one day, I’ll be working in a foreign country, watching the sunset after a long day of work. I don’t know when that day will come, but I want to keep moving toward it. Life is too short to live only the life that others expect you to live.`,
     },
   },
   {

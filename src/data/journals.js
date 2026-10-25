@@ -32,8 +32,7 @@ What attracts me most is not just the freedom to travel. It’s the freedom to c
 
 Of course, this life isn’t always as beautiful as it looks. You still need money, skills, and the ability to take care of yourself. Freedom doesn’t mean having no responsibilities. It means taking responsibility for building a life that you truly want.
 
-Maybe one day, I’ll be working in a foreign country, watching the sunset after a long day of work. I don’t know when that day will come, but I want to keep moving toward it. Life is too short to live only the life that others expect you to live.
-`,
+Maybe one day, I’ll be working in a foreign country, watching the sunset after a long day of work. I don’t know when that day will come, but I want to keep moving toward it. Life is too short to live only the life that others expect you to live.`,
     },
   },
   {

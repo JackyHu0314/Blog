@@ -26,7 +26,7 @@ export const dict = {
     },
     journal: {
       title: '随记',
-      subtitle: '记录情感、学业和成长中的点滴思考',
+      subtitle: '一些想法，一些情绪。写下来，就没那么乱了。',
       categories: {
         全部: '全部',
         情感: '情感',
@@ -38,15 +38,15 @@ export const dict = {
     },
     about: {
       title: 'About',
-      tagline: 'Mathematics / Video Generation',
+      tagline: 'Mathematics / WAM · VLA',
       intro: 'Profile',
       introBody:
-        '西安交通大学数学学院本科生。目前关注 Video Generation。',
+        '读数学，也做一点 AI。偶尔在这里写点东西。',
       interests: 'Interests',
       interestsBody: '编程、深度学习、阅读、摄影、篮球和音乐。',
       skills: 'Stack',
       contact: '联系',
-      contactHint: '欢迎交流。',
+      contactHint: '想聊聊的话，随时找我。',
       wechatHint: '扫一扫，加我微信',
       qqHint: '扫一扫，加我 QQ',
     },
@@ -57,7 +57,7 @@ export const dict = {
     },
     research: {
       title: 'Research',
-      subtitle: 'Video Generation.',
+      subtitle: 'Robot Learning · WAM / VLA',
       status: {
         进行中: '进行中',
         已完成: '已完成',
@@ -92,7 +92,7 @@ export const dict = {
     },
     journal: {
       title: 'Journal',
-      subtitle: 'Fragments on feelings, study, and research',
+      subtitle: 'Thoughts and moods, written down so they feel a little less messy.',
       categories: {
         全部: 'All',
         情感: 'Feelings',
@@ -104,15 +104,15 @@ export const dict = {
     },
     about: {
       title: 'About Me',
-      tagline: 'Mathematics / Video Generation',
+      tagline: 'Mathematics / WAM · VLA',
       intro: 'Profile',
       introBody:
-        "Mathematics student at Xi'an Jiaotong University. Currently focused on video generation.",
+        "Studying math, doing a bit of AI. I write here now and then.",
       interests: 'Interests',
       interestsBody: 'Programming, deep learning, reading, photography, basketball, and music.',
       skills: 'Stack',
       contact: 'Contact',
-      contactHint: 'Always open to conversation.',
+      contactHint: 'Want to talk? Reach out anytime.',
       wechatHint: 'Scan to add me on WeChat',
       qqHint: 'Scan to add me on QQ',
     },
@@ -123,7 +123,7 @@ export const dict = {
     },
     research: {
       title: 'Research',
-      subtitle: 'Video Generation.',
+      subtitle: 'Robot Learning · WAM / VLA',
       status: {
         进行中: 'In progress',
         已完成: 'Completed',

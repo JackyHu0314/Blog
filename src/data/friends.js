@@ -29,4 +29,10 @@ export const friends = [
     url: 'https://qiumu0o0.github.io/',
     avatar: 'https://qiumu0o0.github.io/avatar.png',
   },
+  {
+    name: "secret‘s blog",
+    description: '睦子米',
+    url: 'https://secret3694.github.io/',
+    avatar: 'https://secret3694.github.io/img/github-avatar.png',
+  },
 ]

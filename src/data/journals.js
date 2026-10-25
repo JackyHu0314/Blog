@@ -37,7 +37,16 @@ Maybe one day, I’ll be working in a foreign country, watching the sunset after
   },
   {
     id: 'lost-and-rebuild',
-    cover: '/lost.jpg',
+    cover: '/images/journal/lost-and-rebuild/01-desk-lamp-night.jpg',
+    image: {
+      src: '/images/journal/lost-and-rebuild/01-desk-lamp-night.jpg',
+      alt: {
+        zh: '深夜，台灯还亮着，旁边是合上的电脑和眼镜。',
+        en: 'A desk lamp still on late at night beside a closed laptop and glasses.',
+      },
+      width: 1800,
+      height: 1200,
+    },
     song: {
       title: 'lost',
       artist: 'Hayd',
@@ -100,7 +109,16 @@ Maybe one day, I’ll be working in a foreign country, watching the sunset after
   },
   {
     id: 'emotional-overload',
-    cover: "/don't go don't leave.jpg",
+    cover: '/images/journal/emotional-overload/01-foggy-field.jpg',
+    image: {
+      src: '/images/journal/emotional-overload/01-foggy-field.jpg',
+      alt: {
+        zh: '雾气弥漫的田野里，站着一个人。',
+        en: 'A lone figure standing in a foggy field.',
+      },
+      width: 1800,
+      height: 1200,
+    },
     song: {
       title: "don't go don't leave",
       artist: 'Hayd',
@@ -145,7 +163,16 @@ Maybe one day, I’ll be working in a foreign country, watching the sunset after
   },
   {
     id: 'untitled-2025',
-    cover: '/love me.png',
+    cover: '/images/journal/untitled-2025/01-night-window.jpg',
+    image: {
+      src: '/images/journal/untitled-2025/01-night-window.jpg',
+      alt: {
+        zh: '夜里，雨窗外的城市灯火被晕开。',
+        en: 'City lights blurred through a rain-streaked window at night.',
+      },
+      width: 1800,
+      height: 1238,
+    },
     song: {
       title: 'love me',
       artist: 'Hayd',

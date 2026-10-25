@@ -53,8 +53,8 @@ export default function Research() {
             <h2>Path</h2>
             <ol className="sidebar-steps">
               <li><span>01</span>Deep Learning</li>
-              <li><span>02</span>Generative Models</li>
-              <li><span>03</span>Video Generation</li>
+              <li><span>02</span>Robot Learning</li>
+              <li><span>03</span>WAM / VLA</li>
             </ol>
           </section>
           <section>

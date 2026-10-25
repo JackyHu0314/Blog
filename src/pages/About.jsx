@@ -28,7 +28,7 @@ export default function About() {
             <h2>Jacky Hu</h2>
             <p>{lang === 'zh' ? '西安交通大学数学学院 · 本科在读' : 'School of Mathematics, Xi’an Jiaotong University'}</p>
           </div>
-          <span className="status-dot"><i aria-hidden="true" />Video Generation</span>
+          <span className="status-dot"><i aria-hidden="true" />WAM / VLA</span>
         </section>
 
         <section className="about-section" aria-labelledby="about-intro-title">

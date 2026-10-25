@@ -1,10 +1,18 @@
-import { Link, Outlet } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
+import { Link, Outlet, useLocation, useNavigationType } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import GradientBackground from '../components/GradientBackground'
 import PageLoader from '../components/PageLoader'
 import SocialLinks from '../components/SocialLinks'
 
 export default function MainLayout() {
+  const { pathname } = useLocation()
+  const navigationType = useNavigationType()
+
+  useLayoutEffect(() => {
+    if (navigationType !== 'POP') window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname, navigationType])
+
   return (
     <div className="site-shell">
       <GradientBackground />

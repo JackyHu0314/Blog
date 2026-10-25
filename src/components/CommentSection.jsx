@@ -356,7 +356,7 @@ export default function CommentSection({ articleId }) {
           sitekey: commentsConfig.turnstileSiteKey,
           action: 'comment',
           theme: theme === 'dark' ? 'dark' : 'light',
-          language: lang === 'zh' ? 'zh-CN' : 'en',
+          language: lang === 'zh' ? 'zh-cn' : 'en',
           callback: (token) => {
             markVerification('verified', token)
           },
@@ -726,17 +726,13 @@ export default function CommentSection({ articleId }) {
 
       <style>{`
         .comment-section {
-          --comment-accent: #557b8d;
+          --comment-accent: var(--color-accent);
           --comment-accent-soft: color-mix(in srgb, var(--comment-accent) 10%, transparent);
           --comment-rule: var(--color-card-border);
           margin-top: 3.5rem;
           padding-top: 2rem;
           color: var(--color-text-primary);
           border-top: 1px solid var(--comment-rule);
-        }
-        .dark .comment-section {
-          --comment-accent: #b0e2ed;
-          --comment-accent-soft: color-mix(in srgb, var(--comment-accent) 12%, transparent);
         }
         .comment-section__header {
           display: grid;
@@ -756,9 +752,9 @@ export default function CommentSection({ articleId }) {
         }
         .comment-section__title {
           margin: 0;
-          font-family: var(--font-sans);
+          font-family: var(--font-display);
           font-size: 1.5rem;
-          font-weight: 600;
+          font-weight: 400;
           letter-spacing: -0.015em;
           line-height: 1.35;
         }
@@ -945,9 +941,9 @@ export default function CommentSection({ articleId }) {
         }
         .comment-form__heading h3 {
           margin: 0;
-          font-family: var(--font-sans);
+          font-family: var(--font-display);
           font-size: 1.25rem;
-          font-weight: 600;
+          font-weight: 400;
           letter-spacing: -0.015em;
         }
         .comment-form__heading > p {

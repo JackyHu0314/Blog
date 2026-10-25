@@ -1,11 +1,23 @@
 import { Link, useParams } from 'react-router-dom'
 import { journals } from '../data/journals'
 import { useLanguage } from '../context/LanguageContext'
-import CategoryBadge from '../components/CategoryBadge'
 import TableOfContents from '../components/TableOfContents'
 import CommentSection from '../components/CommentSection'
 import HaydRecommend from '../components/HaydRecommend'
 import './JournalPhoto.css'
+import './JournalDetail.css'
+
+// `![alt](src)` on its own line; adjacent image lines form one row.
+// An alt prefix picks the layout: `full:` bleeds edge to edge, `aside:` floats beside the text.
+const IMAGE_LINE = /^!\[([^\]]*)\]\(([^)\s]+)\)\s*$/
+const IMAGE_LAYOUTS = ['full', 'aside']
+
+function parseImage(line) {
+  const [, rawAlt, src] = line.match(IMAGE_LINE)
+  const prefix = rawAlt.match(/^(\w+):\s*/)
+  const layout = prefix && IMAGE_LAYOUTS.includes(prefix[1]) ? prefix[1] : null
+  return { src, alt: layout ? rawAlt.slice(prefix[0].length) : rawAlt, layout }
+}
 
 function parseBody(markdown) {
   if (!markdown) return { blocks: [], headings: [] }
@@ -46,6 +58,16 @@ function parseBody(markdown) {
       index += 1
       continue
     }
+    if (IMAGE_LINE.test(line)) {
+      const items = []
+      while (index < lines.length && IMAGE_LINE.test(lines[index])) {
+        items.push(parseImage(lines[index]))
+        index += 1
+      }
+      const layout = items.length > 1 ? 'row' : items[0].layout ?? 'column'
+      blocks.push({ type: 'figure', items, layout })
+      continue
+    }
     if (line.startsWith('- ')) {
       const items = []
       while (index < lines.length && lines[index].startsWith('- ')) {
@@ -81,13 +103,24 @@ function renderBody(blocks) {
     if (block.type === 'ul') {
       return <ul key={index} className="article-ul">{block.items.map((item, itemIndex) => <li key={itemIndex}>{renderInline(item)}</li>)}</ul>
     }
+    if (block.type === 'figure') {
+      const caption = block.items.map((item) => item.alt).filter(Boolean).join(' / ')
+      return (
+        <figure key={index} className={`article-figure article-figure--${block.layout}`} style={{ '--figure-cols': block.items.length }}>
+          <div className="article-figure-images">
+            {block.items.map((item) => <img key={item.src} src={item.src} alt={item.alt} loading="lazy" decoding="async" />)}
+          </div>
+          {caption ? <figcaption>{caption}</figcaption> : null}
+        </figure>
+      )
+    }
     return <p key={index} className="article-p">{renderInline(block.text)}</p>
   })
 }
 
 export default function JournalDetail() {
   const { id } = useParams()
-  const { tr, lang } = useLanguage()
+  const { tr, t, lang } = useLanguage()
   const journal = journals.find((item) => String(item.id) === String(id))
 
   if (!journal) {
@@ -100,40 +133,49 @@ export default function JournalDetail() {
   }
 
   const parsed = parseBody(tr(journal.body))
+  const category = t(`journal.categories.${journal.category}`) || journal.category
+  const kicker = `${category} · ${journal.date.replaceAll('-', '.')}`
+  const title = tr(journal.title)
+  const excerpt = tr(journal.excerpt)
+  // Skip the lede when the body already opens with the same sentence.
+  const squash = (text) => text.replace(/\s+/g, '')
+  const showLede = excerpt && !squash(tr(journal.body)).startsWith(squash(excerpt).slice(0, 24))
 
   return (
-    <article className="detail-page animate-block">
-      <div className={`detail-layout${journal.image ? ' detail-layout--with-photo' : ''}`}>
+    <article className={`detail-page detail-page--cinema animate-block${journal.image ? ' has-still' : ''}`}>
+      {journal.image ? (
+        <figure className="cine-hero cine-hero--still">
+          <img
+            src={journal.image.src}
+            alt={tr(journal.image.alt)}
+            width={journal.image.width}
+            height={journal.image.height}
+            fetchPriority="high"
+            decoding="async"
+          />
+          <figcaption className="cine-hero-caption">
+            <p className="cine-kicker">{kicker}</p>
+            <h1>{title}</h1>
+          </figcaption>
+        </figure>
+      ) : null}
+
+      <div className="detail-layout">
         <main className="detail-article">
-          <Link to="/journal" className="article-back">← {lang === 'zh' ? '返回随记' : 'Back to notes'}</Link>
+          <Link to="/journal" className="article-back cine-kicker">← {lang === 'zh' ? '随记' : 'Journal'}</Link>
 
           <header className="article-header">
-            <div className="article-meta">
-              <CategoryBadge label={journal.category} />
-              <time dateTime={journal.date}>{journal.date}</time>
-            </div>
-            <h1>{tr(journal.title)}</h1>
-            <p>{tr(journal.excerpt)}</p>
+            {journal.image ? null : (
+              <>
+                <p className="cine-kicker">{kicker}</p>
+                <h1>{title}</h1>
+              </>
+            )}
+            {showLede ? <p className="article-lede">{excerpt}</p> : null}
           </header>
 
           <HaydRecommend song={journal.song} />
-          {journal.image ? (
-            <div className="article-reading-layout">
-              <div className="article-body">{renderBody(parsed.blocks)}</div>
-              <figure className={`article-photo-sidebar${journal.image.hideOnMobile ? ' article-photo-sidebar--desktop' : ''}`}>
-                <img
-                  src={journal.image.src}
-                  alt={tr(journal.image.alt)}
-                  width={journal.image.width}
-                  height={journal.image.height}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-            </div>
-          ) : (
-            <div className="article-body">{renderBody(parsed.blocks)}</div>
-          )}
+          <div className="article-body">{renderBody(parsed.blocks)}</div>
           <CommentSection articleId={`journal:${journal.id}`} />
         </main>
 

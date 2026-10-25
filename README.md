@@ -43,6 +43,12 @@ VITE_TURNSTILE_SITE_KEY=Turnstile site key
 GitHub Pages 部署时，在仓库的 Actions variables 中创建同名的
 `VITE_COMMENTS_API_BASE_URL` 和 `VITE_TURNSTILE_SITE_KEY`。它们会在构建阶段注入前端。
 
+本地联调评论时，先运行 `npm run comments:migrate:local`，再另开终端运行 `npm run comments:dev`。
+在被 Git 忽略的 `.env.development.local` 中将 API 地址设为 `http://127.0.0.1:8787`，
+site key 使用 Cloudflare 官方测试值 `1x00000000000000000000AA`。
+本地 Worker 只监听回环地址，并仅在该开发命令中跳过真实人机验证；评论保存在本地 D1。
+正式构建继续使用仓库 Actions variables，保留真实验证和审核。
+
 ## 评论区后端
 
 评论 API 放在 `workers/comments/`，使用 Cloudflare Worker + D1。

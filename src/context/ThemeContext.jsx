@@ -17,7 +17,7 @@ function applyTheme(theme) {
   }
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', theme === 'dark' ? '#0b0b10' : '#fbfcfd')
+    ?.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#fafafa')
 }
 
 export function ThemeProvider({ children }) {

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 import SearchBox from './SearchBox'
+import JackySignature from './JackySignature'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function Navbar() {
@@ -35,8 +36,7 @@ export default function Navbar() {
     >
       <div className="nav-inner">
         <NavLink to="/" className="brand-link" aria-label="Jacky's Field Notes home" onClick={() => setOpen(false)}>
-          <span className="brand-name">Jacky Hu</span>
-          <span className="brand-dot" aria-hidden="true" />
+          <JackySignature />
         </NavLink>
 
         <div className="nav-desktop">

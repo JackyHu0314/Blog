@@ -2,97 +2,105 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { journals } from '../data/journals'
 import { useLanguage } from '../context/LanguageContext'
+import './JournalList.css'
 
 const categories = ['全部', '情感', '学业', '科研', '生活', '技术']
+
+const byNewest = (a, b) => b.date.localeCompare(a.date)
 
 export default function Journal() {
   const [selected, setSelected] = useState('全部')
   const { lang, t, tr } = useLanguage()
 
-  const filtered = useMemo(() => {
+  const counts = useMemo(() => {
+    const result = { 全部: journals.length }
+    journals.forEach((journal) => {
+      result[journal.category] = (result[journal.category] ?? 0) + 1
+    })
+    return result
+  }, [])
+
+  const groups = useMemo(() => {
     const list = selected === '全部'
       ? journals
       : journals.filter((journal) => journal.category === selected)
-    return [...list].sort((a, b) => b.date.localeCompare(a.date))
+    const byYear = new Map()
+    ;[...list].sort(byNewest).forEach((journal) => {
+      const year = journal.date.slice(0, 4)
+      if (!byYear.has(year)) byYear.set(year, [])
+      byYear.get(year).push(journal)
+    })
+    return [...byYear.entries()]
   }, [selected])
 
-  const years = [...new Set(journals.map((journal) => journal.date.slice(0, 4)))]
+  const years = [...new Set(journals.map((journal) => journal.date.slice(0, 4)))].sort()
+  const span = years.length > 1 ? `${years[0]} — ${years[years.length - 1]}` : years[0]
+  const summary = lang === 'zh'
+    ? `${journals.length} 篇 · ${span}`
+    : `${journals.length} ${journals.length === 1 ? 'note' : 'notes'} · ${span}`
 
   return (
-    <article className="listing-page journal-page">
-      <header className="page-intro animate-block">
-        <p className="page-kicker">Journal · Archive</p>
-        <h1 className="page-title">Journal</h1>
-        <p className="page-description">
-          {lang === 'zh'
-            ? '技术、生活与近况。'
-            : 'Notes on tech and life.'}
+    <article className="jr-page">
+      <header className="jr-intro animate-block">
+        <p className="cine-kicker">Journal · Archive</p>
+        <h1 className="jr-title">Journal</h1>
+        <p className="jr-lede">
+          {t('journal.subtitle')}
         </p>
+        <p className="jr-summary">{summary}</p>
       </header>
 
-      <div className="listing-layout animate-block animate-block--delay">
-        <main>
-          <div className="journal-filters" aria-label={lang === 'zh' ? '按分类筛选' : 'Filter by category'}>
-            {categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                className="journal-filter"
-                onClick={() => setSelected(category)}
-                aria-pressed={selected === category}
-              >
-                {t(`journal.categories.${category}`)}
-              </button>
-            ))}
-          </div>
-
-          {filtered.length > 0 ? (
-            <ol className="journal-list">
-              {filtered.map((journal) => (
-                <li key={journal.id}>
-                  <Link to={`/journal/${journal.id}`} className="journal-entry">
-                    <div className="journal-entry-copy">
-                      <div className="meta-line">
-                        <span>{t(`journal.categories.${journal.category}`)}</span>
-                        <time dateTime={journal.date}>{journal.date}</time>
-                      </div>
-                      <h2>{tr(journal.title)}</h2>
-                      <p>{tr(journal.excerpt)}</p>
-                      <span className="journal-read-more">Read →</span>
-                    </div>
-                    {journal.cover ? (
-                      <div className="journal-entry-cover" aria-hidden="true">
-                        <img src={journal.cover} alt="" loading="lazy" />
-                      </div>
-                    ) : null}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          ) : (
-            <p className="empty-state">{lang === 'zh' ? '这个分类还没有文章。' : 'Nothing in this category yet.'}</p>
-          )}
-        </main>
-
-        <aside className="listing-sidebar journal-sidebar">
-          <section>
-            <h2>Archive</h2>
-            <div className="archive-summary">
-              <div><span>Notes</span><strong>{journals.length}</strong></div>
-              <div><span>Years</span><strong>{years.length}</strong></div>
-            </div>
-          </section>
-          <section>
-            <h2>Collections</h2>
-            <ul className="collection-list">
-              {categories.slice(1).map((category) => {
-                const count = journals.filter((journal) => journal.category === category).length
-                return <li key={category}><span>{t(`journal.categories.${category}`)}</span><small>{count}</small></li>
-              })}
-            </ul>
-          </section>
-        </aside>
+      <div className="jr-filters animate-block animate-block--delay" role="group" aria-label={lang === 'zh' ? '按分类筛选' : 'Filter by category'}>
+        {categories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            className="jr-filter"
+            onClick={() => setSelected(category)}
+            aria-pressed={selected === category}
+          >
+            {t(`journal.categories.${category}`)}
+            <sup>{counts[category] ?? 0}</sup>
+          </button>
+        ))}
       </div>
+
+      {groups.length > 0 ? (
+        <div className="jr-groups animate-block animate-block--delay">
+          {groups.map(([year, entries]) => (
+            <section className="jr-year" key={year} aria-labelledby={`jr-year-${year}`}>
+              <h2 id={`jr-year-${year}`} className="jr-year-label">{year}</h2>
+              <ol className="jr-list">
+                {entries.map((journal) => (
+                  <li key={journal.id}>
+                    <Link
+                      to={`/journal/${journal.id}`}
+                      className={`jr-entry${journal.image?.hideOnMobile ? ' jr-entry--desktop-thumb' : ''}`}
+                    >
+                      <div className="jr-entry-copy">
+                        <p className="jr-entry-meta">
+                          <time dateTime={journal.date}>{journal.date.slice(5).replace('-', '.')}</time>
+                          <span aria-hidden="true">·</span>
+                          <span>{t(`journal.categories.${journal.category}`)}</span>
+                        </p>
+                        <h3>{tr(journal.title)}</h3>
+                        <p className="jr-entry-excerpt">{tr(journal.excerpt)}</p>
+                      </div>
+                      {journal.cover ? (
+                        <div className="jr-entry-thumb" aria-hidden="true">
+                          <img src={journal.cover} alt="" loading="lazy" />
+                        </div>
+                      ) : null}
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <p className="jr-empty">{lang === 'zh' ? '这个分类还没有文章。' : 'Nothing in this category yet.'}</p>
+      )}
     </article>
   )
 }

@@ -5,6 +5,7 @@ import CategoryBadge from '../components/CategoryBadge'
 import TableOfContents from '../components/TableOfContents'
 import CommentSection from '../components/CommentSection'
 import HaydRecommend from '../components/HaydRecommend'
+import './JournalPhoto.css'
 
 function parseBody(markdown) {
   if (!markdown) return { blocks: [], headings: [] }
@@ -102,7 +103,7 @@ export default function JournalDetail() {
 
   return (
     <article className="detail-page animate-block">
-      <div className="detail-layout">
+      <div className={`detail-layout${journal.image ? ' detail-layout--with-photo' : ''}`}>
         <main className="detail-article">
           <Link to="/journal" className="article-back">← {lang === 'zh' ? '返回随记' : 'Back to notes'}</Link>
 
@@ -115,21 +116,24 @@ export default function JournalDetail() {
             <p>{tr(journal.excerpt)}</p>
           </header>
 
-          {journal.image ? (
-            <figure className="my-8">
-              <img
-                src={journal.image.src}
-                alt={tr(journal.image.alt)}
-                width={journal.image.width}
-                height={journal.image.height}
-                decoding="async"
-                className="block h-auto w-full rounded-xl"
-              />
-            </figure>
-          ) : null}
-
           <HaydRecommend song={journal.song} />
-          <div className="article-body">{renderBody(parsed.blocks)}</div>
+          {journal.image ? (
+            <div className="article-reading-layout">
+              <div className="article-body">{renderBody(parsed.blocks)}</div>
+              <figure className={`article-photo-sidebar${journal.image.hideOnMobile ? ' article-photo-sidebar--desktop' : ''}`}>
+                <img
+                  src={journal.image.src}
+                  alt={tr(journal.image.alt)}
+                  width={journal.image.width}
+                  height={journal.image.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          ) : (
+            <div className="article-body">{renderBody(parsed.blocks)}</div>
+          )}
           <CommentSection articleId={`journal:${journal.id}`} />
         </main>
 

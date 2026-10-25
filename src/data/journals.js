@@ -10,6 +10,7 @@ export const journals = [
       },
       width: 1279,
       height: 1702,
+      hideOnMobile: true,
     },
     title: { zh: '未来的某一天', en: 'Someday' },
     excerpt: {
@@ -24,7 +25,7 @@ export const journals = [
 当然，这种生活并不总像看上去那样美好。你依旧需要有资金、相关技能，还有照顾好自己的能力。自由不代表不用承担任何责任，它意味着你要主动负责，为自己打造出你真正想要的生活。
 也许有朝一日，我会在异国他乡工作。
 
-然后和爱的人一起漫步海边，静静的，就静静的`,
+也许，我还会遇见一个女孩。也许，我们会一起漫步海边，静静的，就静静的。`,
       en: `Hi, my dear friend. I want to talk about a lifestyle that I really dream of: being a digital nomad. Imagine working on your laptop in a small café by the sea, spending a few months in a new country, and waking up every day in a different place. Your life is no longer limited to one city or one office.
 
 What attracts me most is not just the freedom to travel. It’s the freedom to choose how I want to live. I don’t want my whole life to be about working, paying bills, and waiting for the weekend. I want to see more of the world, meet different people, and experience things I’ve never experienced before.

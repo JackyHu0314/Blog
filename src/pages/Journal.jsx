@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { journals } from '../data/journals'
 import { useLanguage } from '../context/LanguageContext'
+import './JournalPhoto.css'
 
 const categories = ['全部', '情感', '学业', '科研', '生活', '技术']
 
@@ -50,7 +51,7 @@ export default function Journal() {
             <ol className="journal-list">
               {filtered.map((journal) => (
                 <li key={journal.id}>
-                  <Link to={`/journal/${journal.id}`} className="journal-entry">
+                  <Link to={`/journal/${journal.id}`} className={`journal-entry${journal.image?.hideOnMobile ? ' journal-entry--desktop-photo' : ''}`}>
                     <div className="journal-entry-copy">
                       <div className="meta-line">
                         <span>{t(`journal.categories.${journal.category}`)}</span>

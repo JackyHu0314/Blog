@@ -22,7 +22,9 @@ export const journals = [
       zh: `嗨，我亲爱的朋友，我想和你聊聊我真正向往的一种生活方式：做一名数字游民。想象一下，在海边的小咖啡馆里对着笔记本电脑工作，在一个陌生的国家待上几个月，每天醒来都身处不同的地方。你的生活再也不会被一座城市、一间办公室所局限。
 最吸引我的不只是旅行的自由，更是选择自己想要的生活方式的自由。我不希望我的人生全部内容就只是工作、付账单、等周末。我想多看看这个世界，结识不同的人，体验我从未经历过的事物。
 当然，这种生活并不总像看上去那样美好。你依旧需要有资金、相关技能，还有照顾好自己的能力。自由不代表不用承担任何责任，它意味着你要主动负责，为自己打造出你真正想要的生活。
-也许有朝一日，我会在异国他乡工作。`,
+也许有朝一日，我会在异国他乡工作。
+
+然后和爱的人一起漫步海边，静静的，就静静的`,
       en: `Hi, my dear friend. I want to talk about a lifestyle that I really dream of: being a digital nomad. Imagine working on your laptop in a small café by the sea, spending a few months in a new country, and waking up every day in a different place. Your life is no longer limited to one city or one office.
 
 What attracts me most is not just the freedom to travel. It’s the freedom to choose how I want to live. I don’t want my whole life to be about working, paying bills, and waiting for the weekend. I want to see more of the world, meet different people, and experience things I’ve never experienced before.
